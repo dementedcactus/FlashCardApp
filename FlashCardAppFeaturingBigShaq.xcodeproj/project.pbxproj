@@ -8,13 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		DB41C37A20332625005CEFDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41C37920332625005CEFDA /* AppDelegate.swift */; };
-		DB41C37C20332625005CEFDA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41C37B20332625005CEFDA /* ViewController.swift */; };
-		DB41C37F20332625005CEFDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB41C37D20332625005CEFDA /* Main.storyboard */; };
 		DB41C38220332625005CEFDA /* FlashCardAppFeaturingBigShaq.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB41C38020332625005CEFDA /* FlashCardAppFeaturingBigShaq.xcdatamodeld */; };
 		DB41C38420332625005CEFDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB41C38320332625005CEFDA /* Assets.xcassets */; };
 		DB41C38720332625005CEFDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB41C38520332625005CEFDA /* LaunchScreen.storyboard */; };
 		DB41C39220332625005CEFDA /* FlashCardAppFeaturingBigShaqTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41C39120332625005CEFDA /* FlashCardAppFeaturingBigShaqTests.swift */; };
 		DB41C39D20332625005CEFDA /* FlashCardAppFeaturingBigShaqUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41C39C20332625005CEFDA /* FlashCardAppFeaturingBigShaqUITests.swift */; };
+		DB41C3AB20332850005CEFDA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41C3AA20332850005CEFDA /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +36,6 @@
 /* Begin PBXFileReference section */
 		DB41C37620332625005CEFDA /* FlashCardAppFeaturingBigShaq.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashCardAppFeaturingBigShaq.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB41C37920332625005CEFDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DB41C37B20332625005CEFDA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DB41C37E20332625005CEFDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DB41C38120332625005CEFDA /* FlashCardAppFeaturingBigShaq.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlashCardAppFeaturingBigShaq.xcdatamodel; sourceTree = "<group>"; };
 		DB41C38320332625005CEFDA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB41C38620332625005CEFDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +46,7 @@
 		DB41C39820332625005CEFDA /* FlashCardAppFeaturingBigShaqUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlashCardAppFeaturingBigShaqUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB41C39C20332625005CEFDA /* FlashCardAppFeaturingBigShaqUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardAppFeaturingBigShaqUITests.swift; sourceTree = "<group>"; };
 		DB41C39E20332625005CEFDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB41C3AA20332850005CEFDA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				DB41C37920332625005CEFDA /* AppDelegate.swift */,
-				DB41C37B20332625005CEFDA /* ViewController.swift */,
-				DB41C37D20332625005CEFDA /* Main.storyboard */,
+				DB41C3AA20332850005CEFDA /* LoginViewController.swift */,
 				DB41C38320332625005CEFDA /* Assets.xcassets */,
 				DB41C38520332625005CEFDA /* LaunchScreen.storyboard */,
 				DB41C38820332625005CEFDA /* Info.plist */,
@@ -237,7 +234,6 @@
 			files = (
 				DB41C38720332625005CEFDA /* LaunchScreen.storyboard in Resources */,
 				DB41C38420332625005CEFDA /* Assets.xcassets in Resources */,
-				DB41C37F20332625005CEFDA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,7 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB41C37C20332625005CEFDA /* ViewController.swift in Sources */,
+				DB41C3AB20332850005CEFDA /* LoginViewController.swift in Sources */,
 				DB41C38220332625005CEFDA /* FlashCardAppFeaturingBigShaq.xcdatamodeld in Sources */,
 				DB41C37A20332625005CEFDA /* AppDelegate.swift in Sources */,
 			);
@@ -300,14 +296,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		DB41C37D20332625005CEFDA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DB41C37E20332625005CEFDA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DB41C38520332625005CEFDA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
