@@ -1,0 +1,6 @@
+framework module Pods_FlashCardAppFeaturingBigShaqUITests {
+  umbrella header "Pods-FlashCardAppFeaturingBigShaqUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

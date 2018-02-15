@@ -8,13 +8,17 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginVC: UIViewController {
+    
+    let loginView = LoginView()
+    let allDecksVC = AllDecksVC()
+    
+    var loggedIn: Bool = true //TODO: Replace with Firebase logged in function
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .green
-
-        // Do any additional setup after loading the view.
+        setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,7 +38,16 @@ class LoginViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        // We'll learn about this on Thursday????
+    }
+    
+    private func setupViews() {
+        //This should always be the bottom view in the nav stack
+        self.view.addSubview(loginView)
+        
+        if loggedIn == true {
+            navigationController?.pushViewController(allDecksVC, animated: false)
+            
+        }
     }
     
 
