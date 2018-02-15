@@ -28,6 +28,8 @@
 		DBD3D8202033CDE40033AAF7 /* DeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3D81F2033CDE40033AAF7 /* DeckView.swift */; };
 		DBD3D8222033D23A0033AAF7 /* AllDecksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3D8212033D23A0033AAF7 /* AllDecksVC.swift */; };
 		DBD3D8242033D2530033AAF7 /* AllDecksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3D8232033D2530033AAF7 /* AllDecksView.swift */; };
+		DBD5DDCE203632D600DF79EC /* AddingThingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD5DDCD203632D600DF79EC /* AddingThingsVC.swift */; };
+		DBD5DDD0203632EB00DF79EC /* AddingThingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD5DDCF203632EB00DF79EC /* AddingThingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,8 @@
 		DBD3D81F2033CDE40033AAF7 /* DeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckView.swift; sourceTree = "<group>"; };
 		DBD3D8212033D23A0033AAF7 /* AllDecksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDecksVC.swift; sourceTree = "<group>"; };
 		DBD3D8232033D2530033AAF7 /* AllDecksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDecksView.swift; sourceTree = "<group>"; };
+		DBD5DDCD203632D600DF79EC /* AddingThingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingThingsVC.swift; sourceTree = "<group>"; };
+		DBD5DDCF203632EB00DF79EC /* AddingThingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingThingsView.swift; sourceTree = "<group>"; };
 		FC94E01608A40D9E965FA344 /* Pods-FlashCardAppFeaturingBigShaqTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashCardAppFeaturingBigShaqTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlashCardAppFeaturingBigShaqTests/Pods-FlashCardAppFeaturingBigShaqTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,6 +208,7 @@
 			children = (
 				DB41C3AA20332850005CEFDA /* LoginVC.swift */,
 				DBD3D81B2033CDBE0033AAF7 /* DeckVC.swift */,
+				DBD5DDCD203632D600DF79EC /* AddingThingsVC.swift */,
 				DBD3D8192033CDAA0033AAF7 /* MenuVC.swift */,
 				DBD3D8212033D23A0033AAF7 /* AllDecksVC.swift */,
 			);
@@ -215,6 +220,7 @@
 			children = (
 				DB41C3B0203337B1005CEFDA /* LoginView.swift */,
 				DBD3D81F2033CDE40033AAF7 /* DeckView.swift */,
+				DBD5DDCF203632EB00DF79EC /* AddingThingsView.swift */,
 				DBD3D8232033D2530033AAF7 /* AllDecksView.swift */,
 				DBD3D81D2033CDD50033AAF7 /* MenuView.swift */,
 			);
@@ -540,6 +546,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBD5DDD0203632EB00DF79EC /* AddingThingsView.swift in Sources */,
 				DB0EF0B32035012E001FD5E5 /* Deck.swift in Sources */,
 				DBB6898720334B3F00E28BD6 /* Settings.swift in Sources */,
 				DB41C3AB20332850005CEFDA /* LoginVC.swift in Sources */,
@@ -551,6 +558,7 @@
 				DBD3D8242033D2530033AAF7 /* AllDecksView.swift in Sources */,
 				DB41C38220332625005CEFDA /* FlashCardAppFeaturingBigShaq.xcdatamodeld in Sources */,
 				DB41C3B1203337B1005CEFDA /* LoginView.swift in Sources */,
+				DBD5DDCE203632D600DF79EC /* AddingThingsVC.swift in Sources */,
 				DB0EF0B02034CFFF001FD5E5 /* CustomTableViewCell.swift in Sources */,
 				DB41C37A20332625005CEFDA /* AppDelegate.swift in Sources */,
 				DBD3D81C2033CDBE0033AAF7 /* DeckVC.swift in Sources */,

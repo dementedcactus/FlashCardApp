@@ -11,6 +11,8 @@ import UIKit
 class AllDecksVC: UIViewController {
 
     let allDecksView = AllDecksView()
+    let menuVC = MenuVC()
+    let addingThingsVC = AddingThingsVC()
     
     let sampleMatrix: [Deck] = [Deck(name: "Trees", numberOfCards: 6),Deck(name: "QuickSort", numberOfCards: 4),Deck(name: "MergeSort", numberOfCards: 8)]
         
@@ -27,11 +29,22 @@ class AllDecksVC: UIViewController {
     }
     private func setupView() {
         self.view.addSubview(allDecksView)
-        
+        allDecksView.menuButton.addTarget(self, action: #selector(rightBarButtonClicked), for: .touchUpInside)
+        allDecksView.plusButton.addTarget(self, action: #selector(leftBarButtonClicked), for: .touchUpInside)
     }
+    
     @objc func rightBarButtonClicked() {
-        //TODO
-        //Present add
+        
+        menuVC.modalTransitionStyle = .coverVertical
+        menuVC.modalPresentationStyle = .overCurrentContext
+        present(menuVC, animated: true, completion: nil)
+    }
+    
+    @objc func leftBarButtonClicked() {
+        
+        addingThingsVC.modalTransitionStyle = .crossDissolve
+        addingThingsVC.modalPresentationStyle = .overCurrentContext
+        present(addingThingsVC, animated: true, completion: nil)
     }
     
     // Make the Status Bar Light/Dark Content for this VC

@@ -19,15 +19,17 @@ class AllDecksView: UIView {
     
     lazy var menuButton: UIButton = {
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "menuFilled"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "menu"), for: .normal)
         button.backgroundColor = .clear
+        button.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         return button
     }()
     
-    lazy var optionsButton: UIButton = {
+    lazy var plusButton: UIButton = {
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "menuVertical"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "plus"), for: .normal)
         button.backgroundColor = .clear
+        button.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         return button
     }()
     
@@ -56,7 +58,7 @@ class AllDecksView: UIView {
     private func setupObjects() {
         addSubview(containerView)
         addSubview(menuButton)
-        addSubview(optionsButton)
+        addSubview(plusButton)
         addSubview(tableView)
         
     }
@@ -65,21 +67,21 @@ class AllDecksView: UIView {
             make.top.equalTo(self.snp.top)
             make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading)
             make.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing)
-            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.12)
+            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.14)
         }
         
         menuButton.snp.makeConstraints { (make) in
             make.leading.equalTo(containerView.snp.leading)
-            make.top.equalTo(containerView.snp.top)
+            make.top.equalTo(containerView.snp.top).offset(20)
             make.bottom.equalTo(containerView.snp.bottom)
-            make.width.equalTo(containerView.snp.height)
+            make.width.equalTo(menuButton.snp.height)
         }
         
-        optionsButton.snp.makeConstraints { (make) in
+        plusButton.snp.makeConstraints { (make) in
             make.trailing.equalTo(containerView.snp.trailing)
-            make.top.equalTo(containerView.snp.top)
+            make.top.equalTo(containerView.snp.top).offset(20)
             make.bottom.equalTo(containerView.snp.bottom)
-            make.width.equalTo(containerView.snp.height)
+            make.width.equalTo(plusButton.snp.height)
         }
         
         tableView.snp.makeConstraints { (make) in

@@ -14,16 +14,23 @@ class MenuVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
-    }
-    private func setupView() {
-        self.view.addSubview(menuView)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func setupView() {
+        self.view.addSubview(menuView)
+        self.view.backgroundColor = .clear
+        
+        menuView.dismissView.addTarget(self, action: #selector(dismissViewAction), for: .touchUpInside)
+    }
+    
+    @objc func dismissViewAction() {
+        dismiss(animated: true, completion: nil)
     }
 
 }
