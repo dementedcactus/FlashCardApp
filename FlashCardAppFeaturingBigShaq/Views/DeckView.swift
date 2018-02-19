@@ -10,6 +10,11 @@ import UIKit
 import SnapKit
 
 class DeckView: UIView {
+    
+    //When you click on a deck this should appear
+    //This will be where cards are presented with the questions on one ContainerView
+    //The answers will be on the bottom half with a switch where the user can select of they got it right or wrong
+    
 
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)

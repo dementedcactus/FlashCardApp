@@ -71,6 +71,7 @@ class LoginView: UIView {
     
     lazy var passwordTextField: UITextField = {
         let textfield = UITextField()
+        textfield.layer.shadowColor = UIColor.gray.cgColor
         textfield.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         textfield.layer.shadowOpacity = 1.0
         textfield.layer.shadowRadius = 0.0
@@ -120,6 +121,22 @@ class LoginView: UIView {
         return button
     }()
     
+    lazy var createAccountButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Create Account", for: .normal)
+        button.setTitleColor(.red, for: .normal)
+        button.backgroundColor = .clear
+        return button
+    }()
+    
+    lazy var forgotPasswordButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Forgot Password?", for: .normal)
+        button.setTitleColor(.red, for: .normal)
+        button.backgroundColor = .clear
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -147,6 +164,8 @@ class LoginView: UIView {
         addSubview(passwordIconImageView)
         addSubview(passwordTextField)
         addSubview(signInButton)
+        addSubview(createAccountButton)
+        addSubview(forgotPasswordButton)
         
     }
     
@@ -210,6 +229,18 @@ class LoginView: UIView {
             //make.width.height.equalTo(facebookSignInButton)
             make.leading.equalTo(passwordIconImageView.snp.leading)
             make.trailing.equalTo(passwordTextField.snp.trailing)
+        }
+        
+        createAccountButton.snp.makeConstraints { (make) in
+            make.top.equalTo(signInButton.snp.bottom).offset(10)
+            make.centerX.equalTo(self.safeAreaLayoutGuide.snp.centerX)
+            make.width.equalTo(signInButton.snp.width)
+        }
+        
+        forgotPasswordButton.snp.makeConstraints { (make) in
+            make.top.equalTo(createAccountButton.snp.bottom).offset(10)
+            make.centerX.equalTo(self.safeAreaLayoutGuide.snp.centerX)
+            make.width.equalTo(signInButton.snp.width)
         }
         
         

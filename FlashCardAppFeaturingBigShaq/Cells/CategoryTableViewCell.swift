@@ -1,0 +1,44 @@
+//
+//  CategoryTableViewCell.swift
+//  FlashCardAppFeaturingBigShaq
+//
+//  Created by Richard Crichlow on 2/18/18.
+//  Copyright © 2018 Richard Crichlow. All rights reserved.
+//
+
+import UIKit
+import SnapKit
+
+class CategoryTableViewCell: UITableViewCell {
+    
+    //label
+    lazy var categoryLabel: UILabel = {
+        let lb = UILabel()
+        lb.text = "Category Here"
+        Stylesheet.Objects.Labels.SelectCategory.style(label: lb)
+        return lb
+    }()
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style , reuseIdentifier: "CategoryCell")
+        setupAndConstrainObjects()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setupAndConstrainObjects()
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupAndConstrainObjects()
+    }
+    
+    private func setupAndConstrainObjects(){
+        self.addSubview(categoryLabel)
+        categoryLabel.snp.makeConstraints { (make) -> Void in
+            make.edges.equalTo(self.snp.edges)
+        }
+    }
+}

@@ -29,7 +29,7 @@ class AddingThingsView: UIView {
         cl.text = "Create Deck"
         cl.textColor = UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1.00)
         cl.numberOfLines = 0
-        cl.font = .boldSystemFont(ofSize: 20) //.italicSystemFont(ofSize: 20)
+        cl.font = .boldSystemFont(ofSize: 25) //.italicSystemFont(ofSize: 20)
         cl.textAlignment = .center
         cl.backgroundColor = .clear
         cl.layer.shadowColor = UIColor(red: 0.459, green: 0.459, blue: 0.469, alpha: 1.00).cgColor
@@ -45,7 +45,7 @@ class AddingThingsView: UIView {
         al.text = "Add"
         al.textColor = UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1.00)
         al.numberOfLines = 0
-        al.font = .italicSystemFont(ofSize: 20)
+        al.font = .boldSystemFont(ofSize: 25) //.italicSystemFont(ofSize: 20)
         al.textAlignment = .center
         al.backgroundColor = .clear
         al.layer.shadowColor = UIColor(red: 0.459, green: 0.459, blue: 0.469, alpha: 1.00).cgColor
@@ -56,6 +56,21 @@ class AddingThingsView: UIView {
         return al
     }()
     
+    lazy var addDeckButton: UIButton = {
+        let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "iconDeck30"), for: .normal)
+        button.backgroundColor = .clear
+        button.imageView?.contentMode = UIViewContentMode.scaleAspectFill
+        return button
+    }()
+    
+    lazy var addCardButton: UIButton = {
+        let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "addCard32"), for: .normal)
+        button.backgroundColor = .clear
+        button.imageView?.contentMode = UIViewContentMode.scaleAspectFill
+        return button
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -79,7 +94,7 @@ class AddingThingsView: UIView {
     }
     
     private func setupBlurEffectView() {
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.extraLight) // .light, .dark, .prominent, .regular, .extraLight
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.prominent) // .light, .dark, .prominent, .regular, .extraLight
         let visualEffect = UIVisualEffectView(frame: UIScreen.main.bounds)
         visualEffect.effect = blurEffect
         addSubview(visualEffect)
@@ -88,6 +103,8 @@ class AddingThingsView: UIView {
     private func setupObjects() {
         addSubview(dismissView)
         addSubview(containerView)
+        addSubview(addDeckButton)
+        addSubview(addCardButton)
         addSubview(createLabel)
         addSubview(addLabel)
         
@@ -98,20 +115,32 @@ class AddingThingsView: UIView {
         containerView.snp.makeConstraints { (make) in
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
             make.trailing.equalTo(safeAreaLayoutGuide.snp.trailing)
-            make.width.equalTo(safeAreaLayoutGuide.snp.width).multipliedBy(0.4)
+            make.width.equalTo(safeAreaLayoutGuide.snp.width).multipliedBy(0.2)
             make.height.equalTo(safeAreaLayoutGuide.snp.height).multipliedBy(0.4)
         }
         
-        createLabel.snp.makeConstraints { (make) in
+        addDeckButton.snp.makeConstraints { (make) in
             make.leading.equalTo(containerView.snp.leading)
             make.top.equalTo(containerView.snp.top).offset(10)
             make.width.equalTo(containerView.snp.width)
         }
         
-        addLabel.snp.makeConstraints { (make) in
+        addCardButton.snp.makeConstraints { (make) in
             make.leading.equalTo(containerView.snp.leading)
-            make.top.equalTo(createLabel.snp.bottom).offset(10)
+            make.top.equalTo(addDeckButton.snp.bottom).offset(10)
             make.width.equalTo(containerView.snp.width)
+        }
+        
+        createLabel.snp.makeConstraints { (make) in
+            make.trailing.equalTo(containerView.snp.leading).offset(-10)
+            make.top.equalTo(containerView.snp.top).offset(10)
+            make.width.equalTo(safeAreaLayoutGuide.snp.width).multipliedBy(0.6)
+        }
+        
+        addLabel.snp.makeConstraints { (make) in
+            make.trailing.equalTo(containerView.snp.leading).offset(-10)
+            make.top.equalTo(createLabel.snp.bottom).offset(10)
+            make.width.equalTo(safeAreaLayoutGuide.snp.width).multipliedBy(0.6)
         }
         
 

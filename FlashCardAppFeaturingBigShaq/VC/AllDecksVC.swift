@@ -14,7 +14,7 @@ class AllDecksVC: UIViewController {
     let menuVC = MenuVC()
     let addingThingsVC = AddingThingsVC()
     
-    let sampleMatrix: [Deck] = [Deck(name: "Trees", numberOfCards: 6),Deck(name: "QuickSort", numberOfCards: 4),Deck(name: "MergeSort", numberOfCards: 8)]
+    let sampleMatrix: [Deck] = [Deck(name: "Trees", numberOfCards: 5, cards: nil), Deck(name: "Wanada", numberOfCards: 15, cards: nil), Deck(name: "MergeSort", numberOfCards: 9, cards: nil)]
         
     
     override func viewDidLoad() {
@@ -110,7 +110,7 @@ extension AllDecksVC: UITableViewDataSource {
         
         let aDeck = sampleMatrix[indexPath.row]
         cell.deckLabel.text = " \(aDeck.name)"
-        cell.numberOfCardsInDeckLabel.text = "\(aDeck.numberOfCards)"
+        cell.numberOfCardsInDeckLabel.text = "\(aDeck.numberOfCards ?? 0)"
         return cell
     }
     

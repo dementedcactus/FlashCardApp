@@ -8,12 +8,14 @@
 
 import Foundation
 
-class Deck {
+class Deck: Codable {
     var name: String
-    var numberOfCards: Int
+    var numberOfCards: Int?
+    var cards: [Card]?
     
-    init(name: String, numberOfCards: Int ) {
+    init(name: String, numberOfCards: Int, cards: [Card]? ) {
         self.name = name
         self.numberOfCards = numberOfCards
+        self.cards = cards
     }
 }
