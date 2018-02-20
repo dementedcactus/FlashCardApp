@@ -26,6 +26,47 @@ class AddCardVC: UIViewController {
         addCardView.categoryTableView.dataSource = self
         addCardView.categoryTableView.delegate = self
         addCardView.categoryButton.addTarget(self, action: #selector(categoryButtonAction), for: .touchUpInside)
+        addCardView.addButton.addTarget(self, action: #selector(addButtonAction), for: .touchUpInside)
+        
+    }
+    
+    @objc private func addButtonAction() {
+        //TODO Add Firebase function for adding a card to a deck
+        
+//        if currentReachabilityStatus == .notReachable {
+//            let noInternetAlert = Alert.createErrorAlert(withMessage: "No Internet Connectivity. Please check your network and restart the app.")
+//            self.present(noInternetAlert, animated: true, completion: nil)
+//            return
+//        }
+        
+        if let front = addCardView.frontTextField.text, !front.isEmpty {
+            if let back = addCardView.backTextField.text, !back.isEmpty {
+                //DatabaseService.manager.delegate = self
+                guard let category = addCardView.categoryButton.currentTitle, category != "Category" else {
+                    let alert = Alert.createErrorAlert(withMessage: "Please pick a category before posting.")
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+                guard let selectedDeck = addCardView.decksToPickFromButton.currentTitle, selectedDeck != "No Decks Yet" else {
+                    let alert = Alert.createErrorAlert(withMessage: "Please pick an existing deck to add a card to.")
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+                
+                //DatabaseService.manager.addCard(toDeck: selectedDeck, withCategory: category, question: front, answer: back)
+                print("Should add card \(front): \(back) to deck \(selectedDeck) for category \(category)")
+                
+                
+            } else {
+                //This triggers if user didn't put text in the backTextView
+                let alert = Alert.createErrorAlert(withMessage: "Please have something for the back of the card before you add.")
+                self.present(alert, animated: true, completion: nil)
+            }
+        } else {
+            // This triggers if the user didn't put text in the frontTextView
+            let alert = Alert.createErrorAlert(withMessage: "Please enter a front item for your card.")
+            self.present(alert, animated: true, completion: nil)
+        }
         
     }
     
@@ -99,7 +140,7 @@ class AddCardVC: UIViewController {
 }
 extension AddCardVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView.tag == 1 {
+        if tableView == self.addCardView.availableDecksTableView {
             return sampleDecks.count
         } else {
             return categories.count
@@ -131,6 +172,16 @@ extension AddCardVC: UITableViewDataSource {
     
 }
 extension AddCardVC: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == self.addCardView.availableDecksTableView {
+            let deck = sampleDecks[indexPath.row].name
+            addCardView.decksToPickFromButton.setTitle(deck, for: .normal)
+            addCardView.availableDecksTableView.isHidden = true
+        } else {
+            let category = categories[indexPath.row]
+            addCardView.categoryButton.setTitle(category, for: .normal)
+            addCardView.categoryTableView.isHidden = true
+        }
+    }
 }
 

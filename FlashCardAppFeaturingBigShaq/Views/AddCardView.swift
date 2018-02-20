@@ -46,6 +46,8 @@ class AddCardView: DismissViewTemplate {
         tv.register(CustomTableViewCell.self, forCellReuseIdentifier: "DeckCell")
         tv.isHidden = true
         tv.tag = 1
+        tv.backgroundColor = .clear
+        tv.separatorColor = .clear
         return tv
     }()
     
@@ -122,6 +124,7 @@ class AddCardView: DismissViewTemplate {
         tv.register(CategoryTableViewCell.self, forCellReuseIdentifier: "CategoryCell")
         tv.isHidden = true
         tv.tag = 2
+        tv.backgroundColor = .clear
         return tv
     }()
     
@@ -203,7 +206,7 @@ class AddCardView: DismissViewTemplate {
             make.width.equalTo(containerView.snp.width).multipliedBy(0.8)
         }
         categoryTableView.snp.makeConstraints { (make) in
-            make.top.equalTo(categoryButton.snp.bottom).offset(10)
+            make.top.equalTo(categoryButton.snp.bottom)
             make.centerX.equalTo(containerView.snp.centerX)
             make.width.equalTo(categoryButton.snp.width).multipliedBy(1)
             make.bottom.equalTo(containerView.snp.bottom)
