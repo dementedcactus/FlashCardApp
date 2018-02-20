@@ -14,7 +14,7 @@ class AllDecksVC: UIViewController {
     let menuVC = MenuVC()
     let addingThingsVC = AddingThingsVC()
     
-    let sampleMatrix: [Deck] = [Deck(name: "Trees", numberOfCards: 5, cards: nil), Deck(name: "Wanada", numberOfCards: 15, cards: nil), Deck(name: "MergeSort", numberOfCards: 9, cards: nil)]
+    let sampleMatrix: [Deck] = [Deck(name: "Trees", numberOfCards: 5, cards: nil), Deck(name: "Wanada", numberOfCards: 15, cards: nil), Deck(name: "MergeSort", numberOfCards: 9, cards: [Card(question: "What is Two Plus Two", answer: "Four", category: "Advice", gotRight: true)])]
         
     
     override func viewDidLoad() {
@@ -33,14 +33,14 @@ class AllDecksVC: UIViewController {
         allDecksView.plusButton.addTarget(self, action: #selector(leftBarButtonClicked), for: .touchUpInside)
     }
     
-    @objc func rightBarButtonClicked() {
+    @objc private func rightBarButtonClicked() {
         
         menuVC.modalTransitionStyle = .coverVertical
         menuVC.modalPresentationStyle = .overCurrentContext
         present(menuVC, animated: true, completion: nil)
     }
     
-    @objc func leftBarButtonClicked() {
+    @objc private func leftBarButtonClicked() {
         
         addingThingsVC.modalTransitionStyle = .crossDissolve
         addingThingsVC.modalPresentationStyle = .overCurrentContext
@@ -95,9 +95,18 @@ class AllDecksVC: UIViewController {
 }
 extension AllDecksVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO
+        
+        guard let selectedCards = sampleMatrix[indexPath.row].cards else {
+            let alert = Alert.createErrorAlert(withMessage: "This deck is empty")
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         //Add segue to DeckVC
+        let deckVC = DeckVC()
         //Dependency Inject the Deck into DeckVC
+        deckVC.injectADeck(deck: selectedCards)
+        navigationController?.pushViewController(deckVC, animated: true)
     }
 }
 extension AllDecksVC: UITableViewDataSource {

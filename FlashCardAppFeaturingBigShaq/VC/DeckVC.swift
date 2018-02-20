@@ -11,6 +11,12 @@ import UIKit
 class DeckVC: UIViewController {
 
     let deckView = DeckView()
+    let menuVC = MenuVC()
+    var deck = [Card]()
+    
+    public func injectADeck(deck: [Card]) {
+        self.deck = deck
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,11 +25,10 @@ class DeckVC: UIViewController {
     }
     private func setupView() {
         self.view.addSubview(deckView)
+        
+        
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
 
 }
