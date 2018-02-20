@@ -10,9 +10,15 @@ import UIKit
 
 class AddingThingsVC: UIViewController {
 
-    let addingThingsView = AddingThingsView()
-    let addDeckVC = AddDeckVC()
-    let addCardVC = AddCardVC()
+    private let addingThingsView = AddingThingsView()
+    private let addDeckVC = AddDeckVC()
+    private let addCardVC = AddCardVC()
+    
+    private var decksToPassOn = [Deck]()
+    
+    public func decksToPassIn(decksToPassIn: [Deck]) {
+        self.decksToPassOn = decksToPassIn
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +40,11 @@ class AddingThingsVC: UIViewController {
         addingThingsView.addCardButton.addTarget(self, action: #selector(addCardAction), for: .touchUpInside)
     }
     
-    @objc func dismissViewAction() {
+    @objc private func dismissViewAction() {
         dismiss(animated: true, completion: nil)
     }
     
-    @objc func addDeckAction() {
+    @objc private func addDeckAction() {
         //This is where the add Deck Alert would go
         //This can be an alertview with a title, textfield, a ok and cancel button
         let alert = UIAlertController(title: "Create Deck", message: "Enter the name of your new deck", preferredStyle: .alert)
@@ -61,9 +67,10 @@ class AddingThingsVC: UIViewController {
          */
     }
     
-    @objc func addCardAction() {
+    @objc private func addCardAction() {
         addCardVC.modalTransitionStyle = .coverVertical
         addCardVC.modalPresentationStyle = .overCurrentContext
+        addCardVC.decksToPassIn(decksToPassIn: decksToPassOn)
         present(addCardVC, animated: true, completion: nil)
     }
 

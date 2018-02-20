@@ -32,7 +32,7 @@ class AddCardView: DismissViewTemplate {
     
     lazy var decksToPickFromButton: UIButton = {
         let button = UIButton()
-        button.setTitle("No Decks Yet", for: .normal)
+        button.setTitle("Decks", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(red: 0.263, green: 0.353, blue: 0.576, alpha: 1.00)
         return button

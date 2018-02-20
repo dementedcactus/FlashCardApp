@@ -13,8 +13,12 @@ class AddCardVC: UIViewController {
     let addCardView = AddCardView()
     
     let categories = ["Advice", "AMA", "Animals", "Art", "Beauty", "Books", "Business", "Cats", "Celebs", "Cooking", "Cosplay", "Cute", "Dating", "Drugs", "Dogs", "Education", "ELI5", "Entertainment", "Fashion", "Fitness", "FML", "Food", "Funny", "Health", "Hmm", "Hobbies", "IRL", "LGBTQ+", "Lifestyle", "Memes", "MFW", "MLIA", "Music", "Movies", "Nature", "News", "NSFW", "Other", "Poetry", "Politics", "Random", "Religion", "Relationships", "Science", "Sex", "Sports", "Stories", "Tech", "TFW", "Thirst Traps", "THOT Stuff", "THOT Thoughts", "Throwback", "Travel", "TV", "Weird", "Women", "Work", "World", "WTF"]
+
+    var sampleDecks: [Deck] = [Deck(name: "Trees", numberOfCards: 5, cards: nil), Deck(name: "Wanada", numberOfCards: 15, cards: nil), Deck(name: "MergeSort", numberOfCards: 9, cards: nil)]
     
-    let sampleDecks: [Deck] = [Deck(name: "Trees", numberOfCards: 5, cards: nil), Deck(name: "Wanada", numberOfCards: 15, cards: nil), Deck(name: "MergeSort", numberOfCards: 9, cards: nil)]
+    public func decksToPassIn(decksToPassIn: [Deck]) {
+        self.sampleDecks = decksToPassIn
+    }
     
     
     override func viewDidLoad() {
@@ -156,6 +160,7 @@ extension AddCardVC: UITableViewDataSource {
             cell = tableView.dequeueReusableCell(withIdentifier: "DeckCell", for: indexPath) as? CustomTableViewCell
             let deck = sampleDecks[indexPath.row]
             cell!.deckLabel.text = " \(deck.name)"
+            cell!.numberOfCardsInDeckLabel.text = "\(deck.numberOfCards ?? 0)"
             displaycell = cell!
             
         } else if tableView == self.addCardView.categoryTableView {

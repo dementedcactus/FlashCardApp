@@ -44,6 +44,7 @@ class AllDecksVC: UIViewController {
         
         addingThingsVC.modalTransitionStyle = .crossDissolve
         addingThingsVC.modalPresentationStyle = .overCurrentContext
+        addingThingsVC.decksToPassIn(decksToPassIn: sampleMatrix)
         present(addingThingsVC, animated: true, completion: nil)
     }
     
