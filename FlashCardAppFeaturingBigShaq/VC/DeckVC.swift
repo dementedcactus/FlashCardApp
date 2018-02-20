@@ -23,10 +23,22 @@ class DeckVC: UIViewController {
         
         setupView()
     }
+    
     private func setupView() {
         self.view.addSubview(deckView)
-        
-        
+        deckView.showAnswerButton.addTarget(self, action: #selector(showAnswerClicked), for: .touchUpInside)
+        deckView.repeatButton.addTarget(self, action: #selector(repeatClicked), for: .touchUpInside)
+        deckView.nextQuestionButton.addTarget(self, action: #selector(nextClicked), for: .touchUpInside)
+    }
+    
+    @objc private func showAnswerClicked() {
+        deckView.questionTextView.isHidden = true
+    }
+    @objc private func repeatClicked() {
+        deckView.questionTextView.isHidden = false
+    }
+    @objc private func nextClicked() {
+        //TODO
     }
     
     

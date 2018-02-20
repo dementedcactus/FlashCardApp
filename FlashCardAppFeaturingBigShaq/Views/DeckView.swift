@@ -31,14 +31,13 @@ class DeckView: UIView {
     lazy var answerTextView: UITextView = {
         let tv = UITextView()
         tv.text = "Sample Answer Text Here"
-        tv.isHidden = true
         Stylesheet.Objects.Textviews.Completed.style(textview: tv)
         return tv
     }()
     
     lazy var showAnswerButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Answer", for: .normal)
+        button.setTitle("Show Answer", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(red: 0.263, green: 0.353, blue: 0.576, alpha: 1.00)
         return button
@@ -78,8 +77,8 @@ class DeckView: UIView {
     
     private func setupObjects() {
         addSubview(containerView)
-        addSubview(questionTextView)
         addSubview(answerTextView)
+        addSubview(questionTextView)
         addSubview(showAnswerButton)
         addSubview(nextQuestionButton)
         addSubview(repeatButton)
@@ -100,26 +99,32 @@ class DeckView: UIView {
             make.bottom.equalTo(containerView.snp.bottom).offset(-5)
         }
         
+        showAnswerButton.snp.makeConstraints { (make) in
+            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.08)
+            make.width.equalTo(self.safeAreaLayoutGuide.snp.width).multipliedBy(0.3)
+            make.centerX.equalTo(self.safeAreaLayoutGuide.snp.centerX)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
+        }
+        
+        nextQuestionButton.snp.makeConstraints { (make) in
+            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.08)
+            make.width.equalTo(self.safeAreaLayoutGuide.snp.width).multipliedBy(0.3)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
+            make.leading.equalTo(showAnswerButton.snp.trailing)
+        }
+        
+        repeatButton.snp.makeConstraints { (make) in
+            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.08)
+            make.width.equalTo(self.safeAreaLayoutGuide.snp.width).multipliedBy(0.3)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
+            make.trailing.equalTo(showAnswerButton.snp.leading)
+        }
+        
         answerTextView.snp.makeConstraints { (make) in
             make.top.equalTo(containerView.snp.top).offset(5)
             make.leading.equalTo(containerView.snp.leading).offset(5)
             make.trailing.equalTo(containerView.snp.trailing).offset(-5)
             make.bottom.equalTo(containerView.snp.bottom).offset(-5)
-        }
-        
-        showAnswerButton.snp.makeConstraints { (make) in
-            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.08)
-            make.width.equalTo(self.safeAreaLayoutGuide.snp.width)
-        }
-        
-        nextQuestionButton.snp.makeConstraints { (make) in
-            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.08)
-            make.width.equalTo(self.safeAreaLayoutGuide.snp.width).multipliedBy(0.5)
-        }
-        
-        repeatButton.snp.makeConstraints { (make) in
-            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.08)
-            make.width.equalTo(self.safeAreaLayoutGuide.snp.width).multipliedBy(0.5)
         }
     
     }
