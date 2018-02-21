@@ -46,6 +46,7 @@ class DeckVC: UIViewController {
         deckView.showAnswerButton.addTarget(self, action: #selector(showAnswerClicked), for: .touchUpInside)
         deckView.repeatButton.addTarget(self, action: #selector(repeatClicked), for: .touchUpInside)
         deckView.nextQuestionButton.addTarget(self, action: #selector(nextClicked), for: .touchUpInside)
+        deckView.previousButton.addTarget(self, action: #selector(previousClicked), for: .touchUpInside)
         if deck.isEmpty {
             deckView.questionTextView.text = "No data in this deck"
         } else {
@@ -75,6 +76,19 @@ class DeckVC: UIViewController {
         currentCard += 1
         if currentCard > deck.count - 1 {
             let alert = Alert.create(withTitle: "End", andMessage: "End of Deck Reached", withPreferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            loadCard()
+            repeatClicked()
+        }
+    }
+    
+    @objc private func previousClicked() {
+        
+        currentCard -= 1
+        if currentCard < 0 {
+            let alert = Alert.create(withTitle: "Beginning", andMessage: "Beginning of Deck Reached", withPreferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {

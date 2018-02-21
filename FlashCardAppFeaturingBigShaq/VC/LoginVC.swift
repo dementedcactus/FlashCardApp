@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginVC: UIViewController {
     
@@ -14,7 +15,7 @@ class LoginVC: UIViewController {
     let allDecksVC = AllDecksVC()
     let createAccountVC = CreateAccountVC()
     
-    var loggedIn: Bool = true //TODO: Replace with Firebase logged in function
+    var loggedIn: Bool = false //TODO: Replace with Firebase logged in function
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,9 +56,12 @@ class LoginVC: UIViewController {
         loginView.forgotPasswordButton.addTarget(self, action: #selector(forgotPasswordButtonPressed), for: .touchUpInside)
         loginView.facebookSignInButton.addTarget(self, action: #selector(facebookButtonPressed), for: .touchUpInside)
         loginView.twitterSignInButton.addTarget(self, action: #selector(twitterButtonPressed), for: .touchUpInside)
+        loginView.signInButton.addTarget(self, action: #selector(signInButtonPressed), for: .touchUpInside)
     }
     
     @objc func signInButtonPressed() {
+        
+        /*
         guard loginView.emailTextField.text != "" else {
             let alert = Alert.createErrorAlert(withMessage: "Please Enter an Email")
             self.present(alert, animated: true, completion: nil)
@@ -70,10 +74,12 @@ class LoginVC: UIViewController {
             return
         }
         
-        //let email = loginView.emailTextField.text
-        //let password = loginView.passwordTextField.text
+        let email = loginView.emailTextField.text
+        let password = loginView.passwordTextField.text
         //TODO Firebase func for logging in
+        */
         
+        navigationController?.pushViewController(allDecksVC, animated: true)
     }
     
     @objc func twitterButtonPressed() {

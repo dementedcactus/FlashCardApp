@@ -14,7 +14,7 @@ class AllDecksVC: UIViewController {
     let menuVC = MenuVC()
     let addingThingsVC = AddingThingsVC()
     
-    let sampleMatrix: [Deck] = [Deck(name: "Trees", numberOfCards: 5, cards: nil), Deck(name: "Wanada", numberOfCards: 15, cards: nil), Deck(name: "MergeSort", numberOfCards: 9, cards: [Card(question: "What is Two Plus Two", answer: "Four", category: "Advice", gotRight: true)])]
+    let sampleMatrix: [Deck] = Deck.sampleMatrix
         
     
     override func viewDidLoad() {
@@ -27,6 +27,7 @@ class AllDecksVC: UIViewController {
         allDecksView.tableView.estimatedRowHeight = 80
         allDecksView.tableView.rowHeight = UITableViewAutomaticDimension
     }
+    
     private func setupView() {
         self.view.addSubview(allDecksView)
         allDecksView.menuButton.addTarget(self, action: #selector(rightBarButtonClicked), for: .touchUpInside)
@@ -62,7 +63,7 @@ class AllDecksVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        animateTable()
+        //animateTable()
     }
     
     func animateTable() {

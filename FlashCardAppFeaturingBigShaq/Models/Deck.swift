@@ -9,6 +9,10 @@
 import Foundation
 
 class Deck: Codable {
+    static let sampleMatrix = [Deck(name: "Trees", numberOfCards: 0, cards: nil),
+                               Deck(name: "Wakanda", numberOfCards: 0, cards: nil),
+                               Deck(name: "QuickMath", numberOfCards: Card.sampleQuickMath.count, cards: Card.sampleQuickMath)]
+    
     var name: String
     var numberOfCards: Int?
     var cards: [Card]?
@@ -20,6 +24,3 @@ class Deck: Codable {
     }
 }
 
-class DSA: Codable {
-    static let sampleMatrix: [Deck] = [Deck(name: "Trees", numberOfCards: 5, cards: nil), Deck(name: "Wanada", numberOfCards: 15, cards: nil), Deck(name: "MergeSort", numberOfCards: 9, cards: [Card(question: "What is Two Plus Two", answer: "Four", category: "Quick Math", gotRight: true)])]
-}

@@ -37,7 +37,16 @@ class DeckView: UIView {
     
     lazy var showAnswerButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Show Answer", for: .normal)
+        button.setTitle("Answer", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor(red: 0.263, green: 0.353, blue: 0.576, alpha: 1.00)
+        return button
+    }()
+    
+    lazy var previousButton: UIButton = {
+        let button = UIButton()
+        //button.setTitle("Previous", for: .normal)
+        button.setImage(#imageLiteral(resourceName: "back30"), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(red: 0.263, green: 0.353, blue: 0.576, alpha: 1.00)
         return button
@@ -45,7 +54,8 @@ class DeckView: UIView {
 
     lazy var nextQuestionButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Next", for: .normal)
+        //button.setTitle("Next", for: .normal)
+        button.setImage(#imageLiteral(resourceName: "forward30"), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(red: 0.325, green: 0.690, blue: 0.875, alpha: 1.00)
         return button
@@ -57,6 +67,12 @@ class DeckView: UIView {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(red: 0.325, green: 0.690, blue: 0.875, alpha: 1.00)
         return button
+    }()
+    
+    lazy var fakeStackView: UIView = {
+        let cv = UIView()
+        cv.backgroundColor = .green
+        return cv
     }()
     
     override init(frame: CGRect) {
@@ -79,9 +95,14 @@ class DeckView: UIView {
         addSubview(containerView)
         addSubview(answerTextView)
         addSubview(questionTextView)
+        
+        addSubview(fakeStackView)
+        
+        addSubview(previousButton)
+        addSubview(repeatButton)
         addSubview(showAnswerButton)
         addSubview(nextQuestionButton)
-        addSubview(repeatButton)
+        
     }
     
     private func setupViews() {
@@ -92,6 +113,13 @@ class DeckView: UIView {
             make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.40)
         }
         
+        answerTextView.snp.makeConstraints { (make) in
+            make.top.equalTo(containerView.snp.top).offset(5)
+            make.leading.equalTo(containerView.snp.leading).offset(5)
+            make.trailing.equalTo(containerView.snp.trailing).offset(-5)
+            make.bottom.equalTo(containerView.snp.bottom).offset(-5)
+        }
+        
         questionTextView.snp.makeConstraints { (make) in
             make.top.equalTo(containerView.snp.top).offset(5)
             make.leading.equalTo(containerView.snp.leading).offset(5)
@@ -99,33 +127,46 @@ class DeckView: UIView {
             make.bottom.equalTo(containerView.snp.bottom).offset(-5)
         }
         
-        showAnswerButton.snp.makeConstraints { (make) in
+        fakeStackView.snp.makeConstraints { (make) in
             make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.08)
-            make.width.equalTo(self.safeAreaLayoutGuide.snp.width).multipliedBy(0.3)
+            make.width.equalTo(self.safeAreaLayoutGuide.snp.width).multipliedBy(0.9)
             make.centerX.equalTo(self.safeAreaLayoutGuide.snp.centerX)
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
         }
         
-        nextQuestionButton.snp.makeConstraints { (make) in
-            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.08)
-            make.width.equalTo(self.safeAreaLayoutGuide.snp.width).multipliedBy(0.3)
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
-            make.leading.equalTo(showAnswerButton.snp.trailing)
+        previousButton.snp.makeConstraints { (make) in
+            //make.height.equalTo(fakeStackView.snp.height).multipliedBy(0.08)
+            make.width.equalTo(fakeStackView.snp.width).multipliedBy(0.15)
+            make.bottom.equalTo(fakeStackView.snp.bottom)
+            make.leading.equalTo(fakeStackView.snp.leading)
+            make.top.equalTo(fakeStackView.snp.top)
         }
         
         repeatButton.snp.makeConstraints { (make) in
-            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.08)
-            make.width.equalTo(self.safeAreaLayoutGuide.snp.width).multipliedBy(0.3)
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
-            make.trailing.equalTo(showAnswerButton.snp.leading)
+            //make.height.equalTo(fakeStackView.snp.height).multipliedBy(0.08)
+            make.width.equalTo(fakeStackView.snp.width).multipliedBy(0.35)
+            make.bottom.equalTo(fakeStackView.snp.bottom)
+            make.leading.equalTo(previousButton.snp.trailing)
+            make.top.equalTo(fakeStackView.snp.top)
         }
         
-        answerTextView.snp.makeConstraints { (make) in
-            make.top.equalTo(containerView.snp.top).offset(5)
-            make.leading.equalTo(containerView.snp.leading).offset(5)
-            make.trailing.equalTo(containerView.snp.trailing).offset(-5)
-            make.bottom.equalTo(containerView.snp.bottom).offset(-5)
+        showAnswerButton.snp.makeConstraints { (make) in
+            //make.height.equalTo(fakeStackView.snp.height).multipliedBy(0.08)
+            make.width.equalTo(fakeStackView.snp.width).multipliedBy(0.35)
+            make.bottom.equalTo(fakeStackView.snp.bottom)
+            make.leading.equalTo(repeatButton.snp.trailing)
+            make.top.equalTo(fakeStackView.snp.top)
         }
+        
+        nextQuestionButton.snp.makeConstraints { (make) in
+            //make.height.equalTo(fakeStackView.snp.height).multipliedBy(0.08)
+            make.width.equalTo(fakeStackView.snp.width).multipliedBy(0.15)
+            make.bottom.equalTo(fakeStackView.snp.bottom)
+            make.leading.equalTo(showAnswerButton.snp.trailing)
+            make.top.equalTo(fakeStackView.snp.top)
+        }
+        
+        
     
     }
 

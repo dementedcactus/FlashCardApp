@@ -12,6 +12,8 @@
 		ACBCC140C01D1773CFE87145 /* Pods_FlashCardAppFeaturingBigShaqTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7C913B1554DD96F763DA35 /* Pods_FlashCardAppFeaturingBigShaqTests.framework */; };
 		DB0EF0B02034CFFF001FD5E5 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0EF0AF2034CFFF001FD5E5 /* CustomTableViewCell.swift */; };
 		DB0EF0B32035012E001FD5E5 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0EF0B22035012E001FD5E5 /* Deck.swift */; };
+		DB2770CE203E23FF007BAD7B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB2770CD203E23FF007BAD7B /* GoogleService-Info.plist */; };
+		DB2770D0203E2B25007BAD7B /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2770CF203E2B25007BAD7B /* UserProfile.swift */; };
 		DB41C37A20332625005CEFDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41C37920332625005CEFDA /* AppDelegate.swift */; };
 		DB41C38220332625005CEFDA /* FlashCardAppFeaturingBigShaq.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB41C38020332625005CEFDA /* FlashCardAppFeaturingBigShaq.xcdatamodeld */; };
 		DB41C38420332625005CEFDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB41C38320332625005CEFDA /* Assets.xcassets */; };
@@ -22,7 +24,6 @@
 		DB41C3B1203337B1005CEFDA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41C3B0203337B1005CEFDA /* LoginView.swift */; };
 		DBB6898520334A1B00E28BD6 /* StyleSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB6898420334A1B00E28BD6 /* StyleSheet.swift */; };
 		DBB6898720334B3F00E28BD6 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB6898620334B3F00E28BD6 /* Settings.swift */; };
-		DBC1D552203C6B7B005ABB7F /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC1D551203C6B7B005ABB7F /* Quiz.swift */; };
 		DBD3D81A2033CDAA0033AAF7 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3D8192033CDAA0033AAF7 /* MenuVC.swift */; };
 		DBD3D81C2033CDBE0033AAF7 /* DeckVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3D81B2033CDBE0033AAF7 /* DeckVC.swift */; };
 		DBD3D81E2033CDD50033AAF7 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3D81D2033CDD50033AAF7 /* MenuView.swift */; };
@@ -70,6 +71,8 @@
 		B41DA57864D85599863C6646 /* Pods_FlashCardAppFeaturingBigShaq.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlashCardAppFeaturingBigShaq.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB0EF0AF2034CFFF001FD5E5 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		DB0EF0B22035012E001FD5E5 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		DB2770CD203E23FF007BAD7B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		DB2770CF203E2B25007BAD7B /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		DB41C37620332625005CEFDA /* FlashCardAppFeaturingBigShaq.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashCardAppFeaturingBigShaq.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB41C37920332625005CEFDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB41C38120332625005CEFDA /* FlashCardAppFeaturingBigShaq.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlashCardAppFeaturingBigShaq.xcdatamodel; sourceTree = "<group>"; };
@@ -87,7 +90,6 @@
 		DB81F8F9E838B8FED7D0CEE2 /* Pods-FlashCardAppFeaturingBigShaqTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashCardAppFeaturingBigShaqTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlashCardAppFeaturingBigShaqTests/Pods-FlashCardAppFeaturingBigShaqTests.release.xcconfig"; sourceTree = "<group>"; };
 		DBB6898420334A1B00E28BD6 /* StyleSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSheet.swift; sourceTree = "<group>"; };
 		DBB6898620334B3F00E28BD6 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		DBC1D551203C6B7B005ABB7F /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		DBD3D8192033CDAA0033AAF7 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		DBD3D81B2033CDBE0033AAF7 /* DeckVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckVC.swift; sourceTree = "<group>"; };
 		DBD3D81D2033CDD50033AAF7 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				DB41C37920332625005CEFDA /* AppDelegate.swift */,
 				DB41C38320332625005CEFDA /* Assets.xcassets */,
 				DB41C38520332625005CEFDA /* LaunchScreen.storyboard */,
+				DB2770CD203E23FF007BAD7B /* GoogleService-Info.plist */,
 				DB41C38820332625005CEFDA /* Info.plist */,
 				DB41C38020332625005CEFDA /* FlashCardAppFeaturingBigShaq.xcdatamodeld */,
 				DB41C3AC2033374E005CEFDA /* VC */,
@@ -261,7 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				DBF43562203A20FE00E96C7D /* Card.swift */,
-				DBC1D551203C6B7B005ABB7F /* Quiz.swift */,
+				DB2770CF203E2B25007BAD7B /* UserProfile.swift */,
 				DB0EF0B22035012E001FD5E5 /* Deck.swift */,
 			);
 			path = Models;
@@ -395,6 +398,7 @@
 			files = (
 				DB41C38720332625005CEFDA /* LaunchScreen.storyboard in Resources */,
 				DB41C38420332625005CEFDA /* Assets.xcassets in Resources */,
+				DB2770CE203E23FF007BAD7B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,7 +600,7 @@
 				DBD3D8202033CDE40033AAF7 /* DeckView.swift in Sources */,
 				DBD3D8242033D2530033AAF7 /* AllDecksView.swift in Sources */,
 				DB41C38220332625005CEFDA /* FlashCardAppFeaturingBigShaq.xcdatamodeld in Sources */,
-				DBC1D552203C6B7B005ABB7F /* Quiz.swift in Sources */,
+				DB2770D0203E2B25007BAD7B /* UserProfile.swift in Sources */,
 				DB41C3B1203337B1005CEFDA /* LoginView.swift in Sources */,
 				DBD5DDCE203632D600DF79EC /* AddingThingsVC.swift in Sources */,
 				DBF43557203915C900E96C7D /* CreateAccountVC.swift in Sources */,

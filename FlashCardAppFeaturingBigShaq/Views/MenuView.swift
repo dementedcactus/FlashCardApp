@@ -67,6 +67,14 @@ class MenuView: UIView {
         return button
     }()
     
+    lazy var logoutButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Log Out", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor(red: 0.263, green: 0.353, blue: 0.576, alpha: 1.00)
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -103,6 +111,7 @@ class MenuView: UIView {
         addSubview(cardBrowserButton)
         addSubview(nightModeButton)
         addSubview(settingsButton)
+        addSubview(logoutButton)
     }
     
     private func constrainObjects() {
@@ -143,6 +152,11 @@ class MenuView: UIView {
             make.height.equalTo(containerView.snp.height).multipliedBy(0.1)
         }
         
+        logoutButton.snp.makeConstraints { (make) in
+            make.leading.trailing.equalTo(containerView)
+            make.top.equalTo(settingsButton.snp.bottom)
+            make.height.equalTo(containerView.snp.height).multipliedBy(0.1)
+        }
         
     }
     

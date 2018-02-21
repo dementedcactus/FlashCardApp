@@ -9,6 +9,14 @@
 import Foundation
 
 class Card: Codable {
+    static var sampleQuickMath = [Card(question: "What is Two Plus Two",
+                                       answer: "Four",
+                                       category: "Quick Math",
+                                       gotRight: false),
+                                  Card(question: "Da Ting Go",
+                                       answer: "SKRRRRRRAT!!!",
+                                       category: "Quick Math",
+                                       gotRight: false)]
     var question: String
     var answer: String
     var category: String
@@ -21,3 +29,4 @@ class Card: Codable {
         self.gotRight = gotRight
     }
 }
+
