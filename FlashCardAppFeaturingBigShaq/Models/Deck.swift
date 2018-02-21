@@ -19,3 +19,7 @@ class Deck: Codable {
         self.cards = cards
     }
 }
+
+class DSA: Codable {
+    static let sampleMatrix: [Deck] = [Deck(name: "Trees", numberOfCards: 5, cards: nil), Deck(name: "Wanada", numberOfCards: 15, cards: nil), Deck(name: "MergeSort", numberOfCards: 9, cards: [Card(question: "What is Two Plus Two", answer: "Four", category: "Quick Math", gotRight: true)])]
+}
