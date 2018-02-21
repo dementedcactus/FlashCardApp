@@ -9,16 +9,22 @@
 import Foundation
 import FirebaseAuth
 
-class UserProfile: NSObject {
+class UserProfile: NSObject{
     let email: String
     let userID: String //should be from firebase
     var displayName: String
-    
+    var bio: String?
+    var imageURL: String?
+    var flags: Int
+    var isBanned: Bool
     override var description: String {
         return """
         - email: \(self.email)
         - userID: \(self.userID)
         - displayName: \(self.displayName)
+        - bio: \(self.bio ?? "nil")
+        - imageURL: \(self.imageURL ?? "nil")
+        - flags: \(flags)
         """
     }
     
@@ -26,9 +32,13 @@ class UserProfile: NSObject {
         return lhs.userID == rhs.userID
     }
     
-    init(email: String, userID: String, displayName: String) {
+    init(email: String, userID: String, displayName: String, bio: String?, flags: Int, imageURL: String?, isBanned: Bool) {
         self.email = email
         self.userID = userID
         self.displayName = displayName
+        self.bio = bio
+        self.flags = flags
+        self.imageURL = imageURL ?? ""
+        self.isBanned = isBanned
     }
 }
