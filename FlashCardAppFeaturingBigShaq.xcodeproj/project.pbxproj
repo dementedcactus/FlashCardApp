@@ -22,6 +22,7 @@
 		DB2770DE203E2E74007BAD7B /* DatabaseService+Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2770DD203E2E74007BAD7B /* DatabaseService+Delete.swift */; };
 		DB2770E0203E2E97007BAD7B /* AuthUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2770DF203E2E97007BAD7B /* AuthUserService.swift */; };
 		DB2770E2203E2EAA007BAD7B /* AuthUserServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2770E1203E2EAA007BAD7B /* AuthUserServiceDelegate.swift */; };
+		DB2770E4203E347F007BAD7B /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2770E3203E347F007BAD7B /* StorageService.swift */; };
 		DB41C37A20332625005CEFDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41C37920332625005CEFDA /* AppDelegate.swift */; };
 		DB41C38220332625005CEFDA /* FlashCardAppFeaturingBigShaq.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB41C38020332625005CEFDA /* FlashCardAppFeaturingBigShaq.xcdatamodeld */; };
 		DB41C38420332625005CEFDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB41C38320332625005CEFDA /* Assets.xcassets */; };
@@ -89,6 +90,7 @@
 		DB2770DD203E2E74007BAD7B /* DatabaseService+Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseService+Delete.swift"; sourceTree = "<group>"; };
 		DB2770DF203E2E97007BAD7B /* AuthUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserService.swift; sourceTree = "<group>"; };
 		DB2770E1203E2EAA007BAD7B /* AuthUserServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserServiceDelegate.swift; sourceTree = "<group>"; };
+		DB2770E3203E347F007BAD7B /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		DB41C37620332625005CEFDA /* FlashCardAppFeaturingBigShaq.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashCardAppFeaturingBigShaq.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB41C37920332625005CEFDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB41C38120332625005CEFDA /* FlashCardAppFeaturingBigShaq.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlashCardAppFeaturingBigShaq.xcdatamodel; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				DBB6898420334A1B00E28BD6 /* StyleSheet.swift */,
 				DB2770D2203E2DBC007BAD7B /* AuthUser */,
 				DB2770D1203E2DAD007BAD7B /* Database */,
+				DB2770E3203E347F007BAD7B /* StorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Toucan/Toucan.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -608,6 +612,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toucan.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -648,6 +653,7 @@
 				DB2770D0203E2B25007BAD7B /* UserProfile.swift in Sources */,
 				DB41C3B1203337B1005CEFDA /* LoginView.swift in Sources */,
 				DBD5DDCE203632D600DF79EC /* AddingThingsVC.swift in Sources */,
+				DB2770E4203E347F007BAD7B /* StorageService.swift in Sources */,
 				DB2770D6203E2E26007BAD7B /* DatabaseServiceDelegate.swift in Sources */,
 				DBF43557203915C900E96C7D /* CreateAccountVC.swift in Sources */,
 				DB0EF0B02034CFFF001FD5E5 /* CustomTableViewCell.swift in Sources */,

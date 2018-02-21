@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F6029A368DEF9878D2E0DA72343A8142"
+               BlueprintIdentifier = "DB48BDC4F670B9E31C2E1824D4E7A3C3"
                BuildableName = "Pods_FlashCardAppFeaturingBigShaq.framework"
                BlueprintName = "Pods-FlashCardAppFeaturingBigShaq"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F6029A368DEF9878D2E0DA72343A8142"
+            BlueprintIdentifier = "DB48BDC4F670B9E31C2E1824D4E7A3C3"
             BuildableName = "Pods_FlashCardAppFeaturingBigShaq.framework"
             BlueprintName = "Pods-FlashCardAppFeaturingBigShaq"
             ReferencedContainer = "container:Pods.xcodeproj">

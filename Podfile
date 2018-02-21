@@ -11,6 +11,7 @@ pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'Firebase/Storage'
 pod 'IQKeyboardManagerSwift'
+pod 'Toucan'
 
   # Pods for FlashCardAppFeaturingBigShaq
 
