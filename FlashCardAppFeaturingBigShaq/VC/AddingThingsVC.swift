@@ -11,7 +11,6 @@ import UIKit
 class AddingThingsVC: UIViewController {
 
     private let addingThingsView = AddingThingsView()
-    private let addDeckVC = AddDeckVC()
     private let addCardVC = AddCardVC()
     
     private var decksToPassOn = [Deck]()
@@ -24,11 +23,6 @@ class AddingThingsVC: UIViewController {
         super.viewDidLoad()
 
         setupView()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     private func setupView() {
@@ -54,17 +48,17 @@ class AddingThingsVC: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert!.textFields![0] // Force unwrapping because we know it exists.
             print("Text field: \(textField.text!)")
+            
+            guard let text = textField.text, !text.isEmpty else {return}
+            
+            if let userID = AuthUserService.manager.getCurrentUser()?.uid {
+                let deckToAdd = Deck(userID: userID, name: text, numberOfCards: 0, cards: nil)
+                DatabaseService.manager.addDeck(deckToAdd)
+            }
+            
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
-        return
-        
-        
-        /*
-        addDeckVC.modalTransitionStyle = .coverVertical
-        addDeckVC.modalPresentationStyle = .overCurrentContext
-        present(addDeckVC, animated: true, completion: nil)
-         */
     }
     
     @objc private func addCardAction() {

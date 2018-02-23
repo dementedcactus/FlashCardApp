@@ -60,17 +60,36 @@ class CreateAccountVC: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
-
 }
 extension CreateAccountVC: UITextFieldDelegate {
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         becomeFirstResponder()
     }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    func presentErrorAlert(withErrorMessage message: String) {
+        let alertController = Alert.createErrorAlert(withMessage: message)
+        self.present(alertController, animated: true, completion: nil)
+    }
+}
+extension CreateAccountVC: AuthUserServiceDelegate {
+    func didFailCreatingUser(_ authUserService: AuthUserService, error: String) {
+        presentErrorAlert(withErrorMessage: error)
+    }
+    func didFailEmailVerification(_ authUserService: AuthUserService, user: User, error: String) {
+        presentErrorAlert(withErrorMessage: error)
+    }
+    func didCreateUser(_ authUserService: AuthUserService, userProfile: UserProfile) {
+        let alert = Alert.create(withTitle: "Success!", andMessage: "Account Created\nA verification email has been sent to your email, \(self.createAccountView.emailTextField.text!) ", withPreferredStyle: .alert)
+        Alert.addAction(withTitle: "Back to Login", style: .default, andHandler: { (_) in
+            self.dismiss(animated: true, completion: {
+                self.createAccountView.emailTextField.text = nil
+                self.createAccountView.passwordTextField.text = nil
+                self.createAccountView.usernameTextField.text = nil
+            })
+        }, to: alert)
+        present(alert, animated: true, completion: nil)
     }
 }

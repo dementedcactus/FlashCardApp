@@ -18,11 +18,8 @@
 		DB2770D6203E2E26007BAD7B /* DatabaseServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2770D5203E2E26007BAD7B /* DatabaseServiceDelegate.swift */; };
 		DB2770D8203E2E45007BAD7B /* DatabaseService+Get.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2770D7203E2E45007BAD7B /* DatabaseService+Get.swift */; };
 		DB2770DA203E2E5A007BAD7B /* DatabaseService+Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2770D9203E2E5A007BAD7B /* DatabaseService+Add.swift */; };
-		DB2770DC203E2E66007BAD7B /* DatabaseService+Edit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2770DB203E2E66007BAD7B /* DatabaseService+Edit.swift */; };
-		DB2770DE203E2E74007BAD7B /* DatabaseService+Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2770DD203E2E74007BAD7B /* DatabaseService+Delete.swift */; };
 		DB2770E0203E2E97007BAD7B /* AuthUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2770DF203E2E97007BAD7B /* AuthUserService.swift */; };
 		DB2770E2203E2EAA007BAD7B /* AuthUserServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2770E1203E2EAA007BAD7B /* AuthUserServiceDelegate.swift */; };
-		DB2770E4203E347F007BAD7B /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2770E3203E347F007BAD7B /* StorageService.swift */; };
 		DB41C37A20332625005CEFDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41C37920332625005CEFDA /* AppDelegate.swift */; };
 		DB41C38220332625005CEFDA /* FlashCardAppFeaturingBigShaq.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB41C38020332625005CEFDA /* FlashCardAppFeaturingBigShaq.xcdatamodeld */; };
 		DB41C38420332625005CEFDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB41C38320332625005CEFDA /* Assets.xcassets */; };
@@ -31,9 +28,12 @@
 		DB41C39D20332625005CEFDA /* FlashCardAppFeaturingBigShaqUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41C39C20332625005CEFDA /* FlashCardAppFeaturingBigShaqUITests.swift */; };
 		DB41C3AB20332850005CEFDA /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41C3AA20332850005CEFDA /* LoginVC.swift */; };
 		DB41C3B1203337B1005CEFDA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41C3B0203337B1005CEFDA /* LoginView.swift */; };
+		DB7C24E2203F3FA700222943 /* NetworkConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7C24E1203F3FA700222943 /* NetworkConnectivity.swift */; };
+		DB7C24E4203F81BE00222943 /* AllCardsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7C24E3203F81BE00222943 /* AllCardsVC.swift */; };
+		DB7C24E6203F821C00222943 /* AllCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7C24E5203F821C00222943 /* AllCardsView.swift */; };
+		DB7C24E8203F843800222943 /* CustomCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7C24E7203F843800222943 /* CustomCVCell.swift */; };
 		DBB6898520334A1B00E28BD6 /* StyleSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB6898420334A1B00E28BD6 /* StyleSheet.swift */; };
 		DBB6898720334B3F00E28BD6 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB6898620334B3F00E28BD6 /* Settings.swift */; };
-		DBD3D81A2033CDAA0033AAF7 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3D8192033CDAA0033AAF7 /* MenuVC.swift */; };
 		DBD3D81C2033CDBE0033AAF7 /* DeckVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3D81B2033CDBE0033AAF7 /* DeckVC.swift */; };
 		DBD3D81E2033CDD50033AAF7 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3D81D2033CDD50033AAF7 /* MenuView.swift */; };
 		DBD3D8202033CDE40033AAF7 /* DeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD3D81F2033CDE40033AAF7 /* DeckView.swift */; };
@@ -47,8 +47,6 @@
 		DBF4355B203A1EE500E96C7D /* AddCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF4355A203A1EE500E96C7D /* AddCardVC.swift */; };
 		DBF4355D203A1EF700E96C7D /* AddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF4355C203A1EF700E96C7D /* AddCardView.swift */; };
 		DBF43563203A20FE00E96C7D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF43562203A20FE00E96C7D /* Card.swift */; };
-		DBF43565203A2AD700E96C7D /* AddDeckVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF43564203A2AD700E96C7D /* AddDeckVC.swift */; };
-		DBF43567203A2AFB00E96C7D /* AddDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF43566203A2AFB00E96C7D /* AddDeckView.swift */; };
 		DBF43569203A2DB900E96C7D /* DismissViewTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF43568203A2DB900E96C7D /* DismissViewTemplate.swift */; };
 		DBF4356B203A3D5E00E96C7D /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF4356A203A3D5E00E96C7D /* CategoryTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -86,11 +84,8 @@
 		DB2770D5203E2E26007BAD7B /* DatabaseServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseServiceDelegate.swift; sourceTree = "<group>"; };
 		DB2770D7203E2E45007BAD7B /* DatabaseService+Get.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseService+Get.swift"; sourceTree = "<group>"; };
 		DB2770D9203E2E5A007BAD7B /* DatabaseService+Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseService+Add.swift"; sourceTree = "<group>"; };
-		DB2770DB203E2E66007BAD7B /* DatabaseService+Edit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseService+Edit.swift"; sourceTree = "<group>"; };
-		DB2770DD203E2E74007BAD7B /* DatabaseService+Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseService+Delete.swift"; sourceTree = "<group>"; };
 		DB2770DF203E2E97007BAD7B /* AuthUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserService.swift; sourceTree = "<group>"; };
 		DB2770E1203E2EAA007BAD7B /* AuthUserServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserServiceDelegate.swift; sourceTree = "<group>"; };
-		DB2770E3203E347F007BAD7B /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		DB41C37620332625005CEFDA /* FlashCardAppFeaturingBigShaq.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashCardAppFeaturingBigShaq.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB41C37920332625005CEFDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB41C38120332625005CEFDA /* FlashCardAppFeaturingBigShaq.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlashCardAppFeaturingBigShaq.xcdatamodel; sourceTree = "<group>"; };
@@ -105,10 +100,13 @@
 		DB41C39E20332625005CEFDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB41C3AA20332850005CEFDA /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		DB41C3B0203337B1005CEFDA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		DB7C24E1203F3FA700222943 /* NetworkConnectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectivity.swift; sourceTree = "<group>"; };
+		DB7C24E3203F81BE00222943 /* AllCardsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCardsVC.swift; sourceTree = "<group>"; };
+		DB7C24E5203F821C00222943 /* AllCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCardsView.swift; sourceTree = "<group>"; };
+		DB7C24E7203F843800222943 /* CustomCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCVCell.swift; sourceTree = "<group>"; };
 		DB81F8F9E838B8FED7D0CEE2 /* Pods-FlashCardAppFeaturingBigShaqTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashCardAppFeaturingBigShaqTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlashCardAppFeaturingBigShaqTests/Pods-FlashCardAppFeaturingBigShaqTests.release.xcconfig"; sourceTree = "<group>"; };
 		DBB6898420334A1B00E28BD6 /* StyleSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSheet.swift; sourceTree = "<group>"; };
 		DBB6898620334B3F00E28BD6 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		DBD3D8192033CDAA0033AAF7 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		DBD3D81B2033CDBE0033AAF7 /* DeckVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckVC.swift; sourceTree = "<group>"; };
 		DBD3D81D2033CDD50033AAF7 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		DBD3D81F2033CDE40033AAF7 /* DeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckView.swift; sourceTree = "<group>"; };
@@ -122,8 +120,6 @@
 		DBF4355A203A1EE500E96C7D /* AddCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardVC.swift; sourceTree = "<group>"; };
 		DBF4355C203A1EF700E96C7D /* AddCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardView.swift; sourceTree = "<group>"; };
 		DBF43562203A20FE00E96C7D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		DBF43564203A2AD700E96C7D /* AddDeckVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeckVC.swift; sourceTree = "<group>"; };
-		DBF43566203A2AFB00E96C7D /* AddDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeckView.swift; sourceTree = "<group>"; };
 		DBF43568203A2DB900E96C7D /* DismissViewTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissViewTemplate.swift; sourceTree = "<group>"; };
 		DBF4356A203A3D5E00E96C7D /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		FC94E01608A40D9E965FA344 /* Pods-FlashCardAppFeaturingBigShaqTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashCardAppFeaturingBigShaqTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlashCardAppFeaturingBigShaqTests/Pods-FlashCardAppFeaturingBigShaqTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				DB0EF0AF2034CFFF001FD5E5 /* CustomTableViewCell.swift */,
+				DB7C24E7203F843800222943 /* CustomCVCell.swift */,
 				DBF4356A203A3D5E00E96C7D /* CategoryTableViewCell.swift */,
 			);
 			path = Cells;
@@ -196,8 +193,6 @@
 				DB2770D5203E2E26007BAD7B /* DatabaseServiceDelegate.swift */,
 				DB2770D7203E2E45007BAD7B /* DatabaseService+Get.swift */,
 				DB2770D9203E2E5A007BAD7B /* DatabaseService+Add.swift */,
-				DB2770DB203E2E66007BAD7B /* DatabaseService+Edit.swift */,
-				DB2770DD203E2E74007BAD7B /* DatabaseService+Delete.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -273,13 +268,12 @@
 			isa = PBXGroup;
 			children = (
 				DBF4355A203A1EE500E96C7D /* AddCardVC.swift */,
-				DBF43564203A2AD700E96C7D /* AddDeckVC.swift */,
 				DBD5DDCD203632D600DF79EC /* AddingThingsVC.swift */,
+				DB7C24E3203F81BE00222943 /* AllCardsVC.swift */,
 				DBD3D8212033D23A0033AAF7 /* AllDecksVC.swift */,
 				DBF43556203915C900E96C7D /* CreateAccountVC.swift */,
 				DBD3D81B2033CDBE0033AAF7 /* DeckVC.swift */,
 				DB41C3AA20332850005CEFDA /* LoginVC.swift */,
-				DBD3D8192033CDAA0033AAF7 /* MenuVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -288,8 +282,8 @@
 			isa = PBXGroup;
 			children = (
 				DBF4355C203A1EF700E96C7D /* AddCardView.swift */,
-				DBF43566203A2AFB00E96C7D /* AddDeckView.swift */,
 				DBD5DDCF203632EB00DF79EC /* AddingThingsView.swift */,
+				DB7C24E5203F821C00222943 /* AllCardsView.swift */,
 				DBD3D8232033D2530033AAF7 /* AllDecksView.swift */,
 				DBF43558203915DD00E96C7D /* CreateAccountView.swift */,
 				DBD3D81F2033CDE40033AAF7 /* DeckView.swift */,
@@ -316,9 +310,9 @@
 				DBF4355420390FD700E96C7D /* Alert.swift */,
 				DBB6898620334B3F00E28BD6 /* Settings.swift */,
 				DBB6898420334A1B00E28BD6 /* StyleSheet.swift */,
+				DB7C24E1203F3FA700222943 /* NetworkConnectivity.swift */,
 				DB2770D2203E2DBC007BAD7B /* AuthUser */,
 				DB2770D1203E2DAD007BAD7B /* Database */,
-				DB2770E3203E347F007BAD7B /* StorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -628,7 +622,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBF43567203A2AFB00E96C7D /* AddDeckView.swift in Sources */,
 				DB2770E2203E2EAA007BAD7B /* AuthUserServiceDelegate.swift in Sources */,
 				DB2770D8203E2E45007BAD7B /* DatabaseService+Get.swift in Sources */,
 				DBD5DDD0203632EB00DF79EC /* AddingThingsView.swift in Sources */,
@@ -639,29 +632,28 @@
 				DB41C3AB20332850005CEFDA /* LoginVC.swift in Sources */,
 				DBF43563203A20FE00E96C7D /* Card.swift in Sources */,
 				DBB6898520334A1B00E28BD6 /* StyleSheet.swift in Sources */,
-				DBF43565203A2AD700E96C7D /* AddDeckVC.swift in Sources */,
-				DBD3D81A2033CDAA0033AAF7 /* MenuVC.swift in Sources */,
-				DB2770DC203E2E66007BAD7B /* DatabaseService+Edit.swift in Sources */,
+				DB7C24E4203F81BE00222943 /* AllCardsVC.swift in Sources */,
 				DBF4356B203A3D5E00E96C7D /* CategoryTableViewCell.swift in Sources */,
 				DBD3D81E2033CDD50033AAF7 /* MenuView.swift in Sources */,
 				DBD3D8222033D23A0033AAF7 /* AllDecksVC.swift in Sources */,
-				DB2770DE203E2E74007BAD7B /* DatabaseService+Delete.swift in Sources */,
 				DB2770DA203E2E5A007BAD7B /* DatabaseService+Add.swift in Sources */,
 				DBD3D8202033CDE40033AAF7 /* DeckView.swift in Sources */,
+				DB7C24E6203F821C00222943 /* AllCardsView.swift in Sources */,
 				DBD3D8242033D2530033AAF7 /* AllDecksView.swift in Sources */,
 				DB41C38220332625005CEFDA /* FlashCardAppFeaturingBigShaq.xcdatamodeld in Sources */,
 				DB2770D0203E2B25007BAD7B /* UserProfile.swift in Sources */,
 				DB41C3B1203337B1005CEFDA /* LoginView.swift in Sources */,
 				DBD5DDCE203632D600DF79EC /* AddingThingsVC.swift in Sources */,
-				DB2770E4203E347F007BAD7B /* StorageService.swift in Sources */,
 				DB2770D6203E2E26007BAD7B /* DatabaseServiceDelegate.swift in Sources */,
 				DBF43557203915C900E96C7D /* CreateAccountVC.swift in Sources */,
 				DB0EF0B02034CFFF001FD5E5 /* CustomTableViewCell.swift in Sources */,
+				DB7C24E8203F843800222943 /* CustomCVCell.swift in Sources */,
 				DB2770D4203E2DF1007BAD7B /* DatabaseService.swift in Sources */,
 				DB41C37A20332625005CEFDA /* AppDelegate.swift in Sources */,
 				DBF4355B203A1EE500E96C7D /* AddCardVC.swift in Sources */,
 				DB2770E0203E2E97007BAD7B /* AuthUserService.swift in Sources */,
 				DBF43569203A2DB900E96C7D /* DismissViewTemplate.swift in Sources */,
+				DB7C24E2203F3FA700222943 /* NetworkConnectivity.swift in Sources */,
 				DBD3D81C2033CDBE0033AAF7 /* DeckVC.swift in Sources */,
 				DBF4355D203A1EF700E96C7D /* AddCardView.swift in Sources */,
 			);

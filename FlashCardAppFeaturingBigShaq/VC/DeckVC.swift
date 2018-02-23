@@ -11,7 +11,6 @@ import UIKit
 class DeckVC: UIViewController {
     
     let deckView = DeckView()
-    let menuVC = MenuVC()
     var deck = [Card]()
     var currentCard = 0 //The index you're currently at in the deck
     var widthValue: CGFloat = 0

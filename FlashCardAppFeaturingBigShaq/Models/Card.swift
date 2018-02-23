@@ -11,12 +11,16 @@ import Foundation
 class Card: Codable {
     static var sampleQuickMath = [Card(question: "What is Two Plus Two",
                                        answer: "Four",
-                                       category: "Quick Math",
+                                       category: "Math",
                                        gotRight: false),
                                   Card(question: "Da Ting Go",
                                        answer: "SKRRRRRRAT!!!",
-                                       category: "Quick Math",
+                                       category: "Math",
                                        gotRight: false)]
+    static var sampleCard = Card(question: "What Does The Fox Say",
+                                          answer: "BRAKAKAKAKAKAKCOQWWW",
+                                          category: "Sort",
+                                          gotRight: false)
     var question: String
     var answer: String
     var category: String

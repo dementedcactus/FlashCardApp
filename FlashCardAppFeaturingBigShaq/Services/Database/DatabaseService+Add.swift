@@ -9,130 +9,70 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 extension DatabaseService {
-    
-    /**
-     Adds a comment to the current post.
-     
-     - Parameters:
-     - text: The comment text.
-     - postID: The ID of the current, selected post.
-     */
-    public func addComment(withText text: String, andPostID postID: String) {
-        guard let userID = AuthUserService.manager.getCurrentUser()?.uid else {
-            print("Error: could not get current user id, please exit the app and log back in.")
-            return
-        }
-        let ref = commentsRef.childByAutoId()
-        let comment = Comment(postID: postID, commentID: ref.key, userID: userID, text: text)
-        
-        ref.setValue(["postID": postID,
-                      "commentID": comment.commentID,
-                      "userID": comment.userID,
-                      "numberOfLikes": comment.numberOfLikes,
-                      "numberOfDislikes": comment.numberOfDislikes,
-                      "text": comment.text,
-                      "timestamp": comment.timestamp
-        ]) { (error, _) in
-            if let error = error {
-                self.delegate?.didFailAddingComment?(self, error: error.localizedDescription)
-            } else {
-                self.delegate?.didAddComment?(self)
-            }
-        }
-        
-        print("new comment added to database!!")
-    }
-    
-    /**
-     Adds a post from the current user.
-     
-     - Parameters:
-     - category: The selected category for this post.
-     - title: The title associated with the current post.
-     - bodyText: The text associated with the current post.
-     - image: The image associated with the current post.
-     */
-    public func addPost(withCategory category: String, title: String, bodyText: String?, image: UIImage?) {
-        guard let currentUser = AuthUserService.manager.getCurrentUser() else {
-            print("Error: could not get current user id, please exit the app and log back in.")
-            return
-        }
-        
-        let ref = postsRef.childByAutoId()
-        let post = Post(postID: ref.key, category: category, userID: currentUser.uid, title: title, bodyText: bodyText)
-        
-        ref.setValue(["postID": post.postID,
-                      "category": post.category,
-                      "userID": post.userID,
-                      "title": post.title,
-                      "bodyText": post.bodyText ?? "",
-                      "numberOfLikes": post.numberOfLikes,
-                      "numberOfDislikes": post.numberOfDislikes,
-                      "flags": post.flags,
-                      "userLiked": post.userLiked,
-                      "userDisliked": post.userDisliked,
-                      "timestamp": post.timestamp
-        ]) { (error, _) in
-            if let error = error {
-                self.delegate?.didFailAddingPost?(self, error: error.localizedDescription)
-            } else {
-                self.delegate?.didAddPost?(self, post: post)
-                print("new post added to database!!")
-            }
-        }
-        
-        StorageService.manager.storePostImage(image: image, withPostID: post.postID) { (errorMessage, _) in
-            if let errorMessage = errorMessage {
-                print(errorMessage)
-            }
-        }
-    }
     
     /**
      Stores a UserProfile object in the database after account creation.
      
      - Parameter userProfile: The UserProfile object passed in.
      */
-    public func addUserProfile(_ userProfile: UserProfile, andImage image: UIImage) {
+    public func addUserProfile(_ userProfile: UserProfile) {
+        //find the node that you want to be doing stuff to
         let ref = usersRef.child(userProfile.userID)
         
+        //Database.database().reference().child("cards").child(userProfile.userID).childByAutoId()
+        
+        
+        //now that you have the node, call the setValue function (which has a completion handler) to input values that you want to set to that node
+            //think of the node as a being part of a dictionary
+            //the node is the key, and you are assigning its value; which is another dictionary in this case
+            //ref : [key: value]
         ref.setValue(["email": userProfile.email,
                       "userID": userProfile.userID,
-                      "displayName": userProfile.displayName,
-                      "bio:": userProfile.bio ?? "",
-                      "flags": userProfile.flags,
-                      "isBanned": userProfile.isBanned
+                      "displayName": userProfile.displayName
+                      
         ]) { (error, _) in
             if let error = error {
                 self.delegate?.didFailAddingUserProfile?(self, error: error.localizedDescription)
+                print("\(userProfile) not added to firebase")
             } else {
                 print("new user added to database!!")
             }
         }
+    }
+    
+    public func addCard(_ card: Card) {
+        //1. find ref
+        let ref = cardsRef.childByAutoId()
         
-        StorageService.manager.storeUserImage(image: image, withUserID: userProfile.userID) { (errorMessage, _) in
-            if let errorMessage = errorMessage {
-                print(errorMessage)
-            }
+        //2. call set value with completion handler
+        ref.setValue(["question": card.question,
+                      "answer": card.answer,
+                      "category": card.category,
+                      "gotRight": card.gotRight ?? false]) { (error, nil) in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            print("Card Added")
+                        }
         }
     }
     
-    /**
-     */
-    public func addImageURLToPost(url: String, postID: String) {
-        addImageURL(url: url, toRef: postsRef, withID: postID)
-    }
-    
-    /**
-     */
-    public func addImageURLToUser(url: String, userID: String) {
-        addImageURL(url: url, toRef: usersRef, withID: userID)
-    }
-    
-    private func addImageURL(url: String, toRef ref: DatabaseReference, withID id: String) {
-        ref.child(id).child("imageURL").setValue(url)
-        print("added image url")
+    public func addDeck(_ deck: Deck) {
+        //1. find ref
+        let ref = decksRef.child(deck.userID)
+        
+        //2. call set value with completion handler
+        ref.setValue(["name": deck.name,
+                      "numberOfCards": deck.numberOfCards ?? 0,
+                      "userID": deck.userID]) { (error, nil) in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            print("Deck Added")
+                        }
+        }
     }
 }

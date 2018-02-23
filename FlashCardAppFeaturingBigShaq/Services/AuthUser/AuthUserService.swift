@@ -37,16 +37,13 @@ class AuthUserService: NSObject {
             if let error = error {
                 self.delegate?.didFailLogin?(self, error: error.localizedDescription)
             } else if let user = user {
-                if !user.isEmailVerified {
-                    self.delegate?.didFailEmailVerification?(self, user: user, error: "Your email is currently not verified. Please check your email and verify your account before proceeding.")
-                    
-                    self.signOut()
-                }
+//                if !user.isEmailVerified {
+//                    self.delegate?.didFailEmailVerification?(self, user: user, error: "Your email is currently not verified. Please check your email and verify your account before proceeding.")
+//                    
+//                    self.signOut()
+//                }
                 
                 DatabaseService.manager.getUserProfile(withUID: user.uid, completion: { (userProfile) in
-                    //core data storage - first time log in
-                    let _ = SavedUser(withUserProfile: userProfile)
-                    CoreDataHelper.manager.saveContext()
                     
                     self.delegate?.didLogin!(self, userProfile: userProfile)
                 })
@@ -66,35 +63,36 @@ class AuthUserService: NSObject {
      - ifNameTaken: A closure that returns only if the displayName is already taken.
      */
     public func createAccount(withEmail email: String, password: String, andDisplayName displayName: String, ifNameTaken: @escaping () -> Void) {
-        DatabaseService.manager.checkIfDisplayNameIsTaken(displayName, currentUserID: nil) { (nameIsTaken, oldName, newName) in
-            if nameIsTaken {
-                ifNameTaken()
-                return
-            }
+//        DatabaseService.manager.checkIfDisplayNameIsTaken(displayName, currentUserID: nil) { (nameIsTaken, oldName, newName) in
+//            if nameIsTaken {
+//                ifNameTaken()
+//                return
+//            }
             self.auth.createUser(withEmail: email, password: password) { (user, error) in
                 if let error = error {
                     self.delegate?.didFailCreatingUser?(self, error: error.localizedDescription)
+                    print("could not create user")
                 }
                 if let user = user {
-                    user.sendEmailVerification(completion: { (error) in
-                        if let error = error {
-                            self.delegate?.didFailEmailVerification?(self, user: user, error: error.localizedDescription)
-                        } else {
-                            self.delegate?.didSendEmailVerification?(self, user: user, message: "A verification email has been sent. Please check your email and verify your account before logging in.")
-                        }
-                    })
+//                    user.sendEmailVerification(completion: { (error) in
+//                        if let error = error {
+//                            self.delegate?.didFailEmailVerification?(self, user: user, error: error.localizedDescription)
+//                        } else {
+//                            self.delegate?.didSendEmailVerification?(self, user: user, message: "A verification email has been sent. Please check your email and verify your account before logging in.")
+//                        }
+//                    })
                     
-                    let newUserProfile = UserProfile(email: email, userID: user.uid, displayName: displayName, bio: nil, flags: 0, imageURL: nil, isBanned: false)
-                    DatabaseService.manager.addUserProfile(newUserProfile, andImage: #imageLiteral(resourceName: "profileImage"))
+                    let newUserProfile = UserProfile(email: email, userID: user.uid, displayName: displayName)
+                    DatabaseService.manager.addUserProfile(newUserProfile)
                     
-                    if !user.isEmailVerified {
-                        self.signOut()
-                    }
+//                    if !user.isEmailVerified {
+//                        self.signOut()
+//                    }
                     self.delegate?.didCreateUser?(self, userProfile: newUserProfile)
+                    print("\(user) was created")
                 }
             }
-            
-        }
+        //}
     }
     public func forgotPassword(withEmail email: String) {
         auth.sendPasswordReset(withEmail: email) { (error) in
@@ -111,13 +109,8 @@ class AuthUserService: NSObject {
      */
     public func signOut() {
         do {
-            try auth.signOut()
             DatabaseService.manager.stopObserving()
-            //core data delete everything
-            CoreDataHelper.manager.removeSavedContext(completion: { (didRemoveUser, didRemovePosts) in
-                print("could remove user: \(didRemoveUser)")
-                print("could remove posts: \(didRemovePosts)")
-            })
+            try auth.signOut()
             delegate?.didSignOut?(self)
         } catch {
             print(error)

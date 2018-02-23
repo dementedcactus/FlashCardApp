@@ -12,9 +12,9 @@ class AddCardVC: UIViewController {
 
     let addCardView = AddCardView()
     
-    let categories = ["Advice", "AMA", "Animals", "Art", "Beauty", "Books", "Business", "Cats", "Celebs", "Cooking", "Cosplay", "Cute", "Dating", "Drugs", "Dogs", "Education", "ELI5", "Entertainment", "Fashion", "Fitness", "FML", "Food", "Funny", "Health", "Hmm", "Hobbies", "IRL", "LGBTQ+", "Lifestyle", "Memes", "MFW", "MLIA", "Music", "Movies", "Nature", "News", "NSFW", "Other", "Poetry", "Politics", "Random", "Religion", "Relationships", "Science", "Sex", "Sports", "Stories", "Tech", "TFW", "Thirst Traps", "THOT Stuff", "THOT Thoughts", "Throwback", "Travel", "TV", "Weird", "Women", "Work", "World", "WTF"]
+    let categories = ["Arrays", "Big O Runtimes", "Bits/Bytes/Number Systems", "Data Structures", "General", "Graphs", "Hashmaps", "Life Cycles", "LinkedLists", "Queues", "Recursion", "Sorting", "Stacks", "Trees", "Other"]
 
-    var sampleDecks: [Deck] = [Deck(name: "Trees", numberOfCards: 5, cards: nil), Deck(name: "Wanada", numberOfCards: 15, cards: nil), Deck(name: "MergeSort", numberOfCards: 9, cards: nil)]
+    var sampleDecks: [Deck] = Deck.sampleMatrix
     
     public func decksToPassIn(decksToPassIn: [Deck]) {
         self.sampleDecks = decksToPassIn
@@ -35,8 +35,6 @@ class AddCardVC: UIViewController {
     }
     
     @objc private func addButtonAction() {
-        //TODO Add Firebase function for adding a card to a deck
-        
 //        if currentReachabilityStatus == .notReachable {
 //            let noInternetAlert = Alert.createErrorAlert(withMessage: "No Internet Connectivity. Please check your network and restart the app.")
 //            self.present(noInternetAlert, animated: true, completion: nil)
@@ -45,20 +43,15 @@ class AddCardVC: UIViewController {
         
         if let front = addCardView.frontTextField.text, !front.isEmpty {
             if let back = addCardView.backTextField.text, !back.isEmpty {
-                //DatabaseService.manager.delegate = self
+                
                 guard let category = addCardView.categoryButton.currentTitle, category != "Category" else {
                     let alert = Alert.createErrorAlert(withMessage: "Please pick a category before posting.")
                     self.present(alert, animated: true, completion: nil)
                     return
                 }
-                guard let selectedDeck = addCardView.decksToPickFromButton.currentTitle, selectedDeck != "No Decks Yet" else {
-                    let alert = Alert.createErrorAlert(withMessage: "Please pick an existing deck to add a card to.")
-                    self.present(alert, animated: true, completion: nil)
-                    return
-                }
-                
-                //DatabaseService.manager.addCard(toDeck: selectedDeck, withCategory: category, question: front, answer: back)
-                print("Should add card \(front): \(back) to deck \(selectedDeck) for category \(category)")
+
+                let card = Card(question: front, answer: back, category: category, gotRight: false)
+                DatabaseService.manager.addCard(card)
                 
                 
             } else {
@@ -110,7 +103,7 @@ class AddCardVC: UIViewController {
         }
     }
     
-    func animateCategoryTV() {
+    private func animateCategoryTV() {
         addCardView.categoryTableView.reloadData()
         let cells = addCardView.categoryTableView.visibleCells
         let tableViewHeight = addCardView.categoryTableView.bounds.size.height

@@ -22,6 +22,7 @@ class AddCardView: DismissViewTemplate {
     
     lazy var deckLabel: UILabel = {
         let lb = UILabel()
+        lb.isHidden = true
         lb.text = "Deck:"
         lb.textAlignment = .center
         lb.numberOfLines = 0
@@ -32,6 +33,7 @@ class AddCardView: DismissViewTemplate {
     
     lazy var decksToPickFromButton: UIButton = {
         let button = UIButton()
+        button.isHidden = true
         button.setTitle("Decks", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(red: 0.263, green: 0.353, blue: 0.576, alpha: 1.00)

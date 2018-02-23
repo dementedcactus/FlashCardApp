@@ -15,8 +15,9 @@ class DatabaseService: NSObject {
     private override init() {
         self.rootRef = Database.database().reference()
         self.usersRef = self.rootRef.child("users")
-        self.postsRef = self.rootRef.child("posts")
-        self.commentsRef = self.rootRef.child("comments")
+        self.categoriesRef = self.rootRef.child("categories")
+        self.cardsRef = self.rootRef.child("cards")
+        self.decksRef = self.rootRef.child("decks")
         super.init()
     }
     
@@ -27,49 +28,20 @@ class DatabaseService: NSObject {
     
     var rootRef: DatabaseReference!
     var usersRef: DatabaseReference!
-    var postsRef: DatabaseReference!
-    var commentsRef: DatabaseReference!
+    var categoriesRef: DatabaseReference!
+    var cardsRef: DatabaseReference!
+    var decksRef: DatabaseReference!
     
     /**
      Removes all observers from all references.
      */
     public func stopObserving() {
         rootRef.removeAllObservers()
-        postsRef.removeAllObservers()
         usersRef.removeAllObservers()
-        commentsRef.removeAllObservers()
-    }
-    
-    //changing display name
-    /** This method attempts to change the user's displayName.
-     If the name change is successful, it will return the old and new displayNames through the DatabaseServiceDelegate protocol didChangeDisplayName(_:, oldName:, newName:) method.
-     If the name change is not successful, it will return a localized error message through the DatabaseServiceDelegate protocol didFailChangingDisplayName?(_:, error:) method.
-     
-     - Parameters:
-     - newName: The new name to change to.
-     - ifNameTaken: A closure that passes the new name back if it is currently in used by a different user.
-     - failedName: The name that is already in use by another user.
-     */
-    public func changeDisplayName(to newName: String, ifNameTaken: @escaping (_ failedName: String) -> Void) {
-        guard let currentUser = AuthUserService.manager.getCurrentUser() else {
-            return
-        }
-        //check if anyone has same display name, if true, return false
-        checkIfDisplayNameIsTaken(newName, currentUserID: currentUser.uid) { (isTaken, oldName, newName)  in
-            if isTaken {
-                ifNameTaken(newName)
-                return
-            }
-            currentUser.createProfileChangeRequest().displayName = newName
-            currentUser.createProfileChangeRequest().commitChanges(completion: { (error) in
-                //if change request was not successful
-                if let error = error {
-                    print(error)
-                    self.delegate?.didFailChangingDisplayName?(self, error: error.localizedDescription)
-                    return
-                }
-            })
-        }
+        categoriesRef.removeAllObservers()
+        cardsRef.removeAllObservers()
+        decksRef.removeAllObservers()
+        
     }
     
     /** This method checks if the given displayName is already in use by another user.
@@ -132,22 +104,121 @@ class DatabaseService: NSObject {
             }
         }
     }
+}
+/*
+import Foundation
+import FirebaseDatabase
+
+@objc protocol DatabaseServiceDelegate: class {
+    @objc optional func didAddFlashcard(_ databaseService: DatabaseService)
+    @objc optional func didFailAddingFlashcard(_ databaseService: DatabaseService, errorMessage: String)
+    @objc optional func didAddCategory(_ databaseService: DatabaseService)
+    @objc optional func didFailAddingCategory(_ databaseService: DatabaseService, errorMessage: String)
+}
+
+class DatabaseService: NSObject {
+    override init() {
+        self.database = Database.database()
+        self.reference = database.reference()
+        self.flashcardsRef = reference.child("flashcards")
+        self.categoriesRef = reference.child("categories")
+        super.init()
+    }
+    let database: Database!
+    let reference: DatabaseReference!
+    let flashcardsRef: DatabaseReference!
+    let categoriesRef: DatabaseReference!
     
-    /**
-     */
-    //this should be run in app delegate?? logInVC/homefeedview - it will observe forever
-    public func checkForBan() {
-        if let currentUser = AuthUserService.manager.getCurrentUser() {
-            usersRef.child(currentUser.uid).child("isBanned").observe(.value, with: { (snapshot) in
-                
-                if let isBanned = snapshot.value as? Bool {
-                    if isBanned {
-                        self.delegate?.didGetBanned?(self, message: "You have been banned for being flagged too many times. Someone needs to have better thot thoughts!!")
-                        AuthUserService.manager.signOut()
-                    }
+    public weak var delegate: DatabaseServiceDelegate?
+}
+
+
+extension DatabaseService {
+    func getAllCategories(fromUserID userID: String, completion: @escaping ([Category]?) -> Void) {
+        let categoryRef = categoriesRef.child(userID)
+        categoryRef.observeSingleEvent(of: .value) { (dataSnapshot) in
+            guard let categoriesSnapshot = dataSnapshot.children.allObjects as? [DataSnapshot] else {
+                print("could not get children snapshots")
+                completion(nil)
+                return
+            }
+            
+            var categories: [Category] = []
+            for categorySnapshot in categoriesSnapshot {
+                guard let categoryDict = categorySnapshot.value as? [String : Any] else {
+                    print("could not get category dict")
+                    completion(nil)
+                    return
                 }
-            })
+                guard let category = Category(categoryDict: categoryDict) else {
+                    print("could not get category")
+                    completion(nil)
+                    return
+                }
+                categories.append(category)
+            }
+            completion(categories.sortedAlphabetically())
+        }
+    }
+    func getAllFlashcards(forUserID userID: String, andCategoryName categoryName: String, completion: @escaping ([Flashcard]?) -> Void) {
+        let flashcardRef = flashcardsRef.child(userID)
+        flashcardRef.observeSingleEvent(of: .value) { (dataSnapshot) in
+            guard let flashcardsSnapshot = dataSnapshot.children.allObjects as? [DataSnapshot] else {
+                print("could not get children snapshots")
+                completion(nil)
+                return
+            }
+            
+            var flashcards: [Flashcard] = []
+            for flashcardSnapshot in flashcardsSnapshot {
+                guard let flashcardDict = flashcardSnapshot.value as? [String : Any] else {
+                    print("could not get flashcard dict")
+                    completion(nil)
+                    return
+                }
+                guard let flashcard = Flashcard(flashcardDict: flashcardDict) else {
+                    print("could not get flashcard")
+                    completion(nil)
+                    return
+                }
+                
+                if flashcard.category != categoryName {
+                    continue
+                }
+                
+                flashcards.append(flashcard)
+            }
+            completion(flashcards.sortedByTimestamp())
         }
     }
 }
 
+
+extension DatabaseService {
+    public func addFlashcard(_ flashcard: Flashcard) {
+        var flashcard = flashcard
+        let flashcardRef = flashcardsRef.child(flashcard.userID).childByAutoId()
+        flashcard.flashcardID = flashcardRef.key
+        let flashcardJSON = flashcard.toJSON()
+        flashcardRef.setValue(flashcardJSON) { (error, _) in
+            if let error = error {
+                self.delegate?.didFailAddingFlashcard?(self, errorMessage: error.localizedDescription)
+            } else {
+                self.delegate?.didAddFlashcard?(self)
+            }
+        }
+    }
+    public func addCategory(_ category: Category) {
+        let category = category
+        let categoryRef = categoriesRef.child(category.userID).child(category.name)
+        let categoryJSON = category.toJSON()
+        categoryRef.setValue(categoryJSON) { (error, _) in
+            if let error = error {
+                self.delegate?.didFailAddingCategory?(self, errorMessage: error.localizedDescription)
+            } else {
+                self.delegate?.didAddCategory?(self)
+            }
+        }
+    }
+}
+*/

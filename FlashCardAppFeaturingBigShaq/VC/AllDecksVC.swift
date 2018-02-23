@@ -11,8 +11,9 @@ import UIKit
 class AllDecksVC: UIViewController {
 
     let allDecksView = AllDecksView()
-    let menuVC = MenuVC()
+    let menuView = MenuView()
     let addingThingsVC = AddingThingsVC()
+    let allCardsVC = AllCardsVC()
     
     let sampleMatrix: [Deck] = Deck.sampleMatrix
         
@@ -32,21 +33,51 @@ class AllDecksVC: UIViewController {
         self.view.addSubview(allDecksView)
         allDecksView.menuButton.addTarget(self, action: #selector(rightBarButtonClicked), for: .touchUpInside)
         allDecksView.plusButton.addTarget(self, action: #selector(leftBarButtonClicked), for: .touchUpInside)
+        menuView.dismissView.addTarget(self, action: #selector(dismissViewAction(sender:)), for: .touchUpInside)
+        menuView.decksButton.addTarget(self, action: #selector(deckButtonAction), for: .touchUpInside)
+        menuView.cardBrowserButton.addTarget(self, action: #selector(cardBrowserAction), for: .touchUpInside)
+        menuView.nightModeButton.addTarget(self, action: #selector(nightModeButtonAction), for: .touchUpInside)
+        menuView.settingsButton.addTarget(self, action: #selector(settingsButtonAction), for: .touchUpInside)
+        menuView.logoutButton.addTarget(self, action: #selector(logOutButtonAction), for: .touchUpInside)
     }
     
     @objc private func rightBarButtonClicked() {
-        
-        menuVC.modalTransitionStyle = .coverVertical
-        menuVC.modalPresentationStyle = .overCurrentContext
-        present(menuVC, animated: true, completion: nil)
+        self.view.addSubview(menuView)
     }
     
     @objc private func leftBarButtonClicked() {
-        
         addingThingsVC.modalTransitionStyle = .crossDissolve
         addingThingsVC.modalPresentationStyle = .overCurrentContext
         addingThingsVC.decksToPassIn(decksToPassIn: sampleMatrix)
         present(addingThingsVC, animated: true, completion: nil)
+    }
+    
+    @objc func dismissViewAction(sender: UIView) {
+        self.menuView.removeFromSuperview()
+    }
+    
+    @objc func deckButtonAction() {
+        self.menuView.removeFromSuperview()
+    }
+    
+    @objc func cardBrowserAction() {
+        navigationController?.pushViewController(allCardsVC, animated: true)
+    }
+    
+    @objc func nightModeButtonAction() {
+        self.menuView.removeFromSuperview()
+    }
+    
+    @objc func settingsButtonAction() {
+        self.menuView.removeFromSuperview()
+    }
+    
+    @objc func logOutButtonAction() {
+        // TODO
+        AuthUserService.manager.signOut()
+        self.navigationController?.popToRootViewController(animated: true)
+        self.menuView.removeFromSuperview()
+//        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     // Make the Status Bar Light/Dark Content for this VC
@@ -56,14 +87,16 @@ class AllDecksVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Hide the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //animateTable()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     func animateTable() {
@@ -80,18 +113,6 @@ class AllDecksVC: UIViewController {
             }, completion: nil)
             delayCounter += 1
         }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // Show the navigation bar on other view controllers
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }
