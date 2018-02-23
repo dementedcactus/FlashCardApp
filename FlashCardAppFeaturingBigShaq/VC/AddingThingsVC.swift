@@ -45,7 +45,7 @@ class AddingThingsVC: UIViewController {
             guard let text = textField.text, !text.isEmpty else {return}
             
             if let userID = AuthUserService.manager.getCurrentUser()?.uid {
-                let deckToAdd = Deck(userID: userID, name: text, numberOfCards: 0, cards: nil)
+                let deckToAdd = Deck(userID: userID, name: text, numberOfCards: 0)
                 DatabaseService.manager.addDeck(deckToAdd)
             }
             

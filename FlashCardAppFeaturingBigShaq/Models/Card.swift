@@ -9,28 +9,19 @@
 import Foundation
 
 class Card: Codable {
-    static var sampleQuickMath = [Card(question: "What is Two Plus Two",
-                                       answer: "Four",
-                                       category: "Math",
-                                       gotRight: false),
-                                  Card(question: "Da Ting Go",
-                                       answer: "SKRRRRRRAT!!!",
-                                       category: "Math",
-                                       gotRight: false)]
-    static var sampleCard = Card(question: "What Does The Fox Say",
-                                          answer: "BRAKAKAKAKAKAKCOQWWW",
-                                          category: "Sort",
-                                          gotRight: false)
+    
     var question: String
     var answer: String
     var category: String
     var gotRight: Bool?
+    var userID: String
     
-    init(question: String, answer: String, category: String, gotRight: Bool) {
+    init(question: String, answer: String, category: String, gotRight: Bool, userID: String) {
         self.question = question
         self.answer = answer
         self.category = category
         self.gotRight = gotRight
+        self.userID = userID
     }
 }
 

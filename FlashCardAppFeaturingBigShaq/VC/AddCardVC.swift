@@ -42,7 +42,7 @@ class AddCardVC: UIViewController {
                     return
                 }
 
-                let card = Card(question: front, answer: back, category: category, gotRight: false)
+                let card = Card(question: front, answer: back, category: category, gotRight: false, userID: (AuthUserService.manager.getCurrentUser()?.uid)!)
                 DatabaseService.manager.addCard(card)
                 
                 

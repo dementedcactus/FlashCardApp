@@ -10,12 +10,18 @@ import UIKit
 
 class AllDecksVC: UIViewController {
 
+    // MARK: Views and View Controllers
     let allDecksView = AllDecksView()
     let menuView = MenuView()
     let addingThingsVC = AddingThingsVC()
     let allCardsVC = AllCardsVC()
     
-    let sampleMatrix: [Deck] = Deck.sampleMatrix
+    // MARK: DataSource
+    var decksArray = [Deck]() {
+        didSet {
+            allDecksView.tableView.reloadData()
+        }
+    }
         
     
     override func viewDidLoad() {
@@ -86,6 +92,14 @@ class AllDecksVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        DatabaseService.manager.getAllDecks(fromUserID: (AuthUserService.manager.getCurrentUser()?.uid)!, completion: { (someData) in
+            if let deckArray = someData {
+                self.decksArray = deckArray
+            } else {
+                print("Couldn't get decks or there are no decks")
+                //TODO: Maybe show an image of no data as a background
+            }
+        })
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -117,28 +131,24 @@ class AllDecksVC: UIViewController {
 extension AllDecksVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let selectedCards = sampleMatrix[indexPath.row].cards else {
-            let alert = Alert.createErrorAlert(withMessage: "This deck is empty")
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
+        let selectedDeck = decksArray[indexPath.row]
         
         //Add segue to DeckVC
         let deckVC = DeckVC()
         //Dependency Inject the Deck into DeckVC
-        deckVC.injectADeck(deck: selectedCards)
+        deckVC.injectADeck(deckname: selectedDeck.name)
         navigationController?.pushViewController(deckVC, animated: true)
     }
 }
 extension AllDecksVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sampleMatrix.count
+        return decksArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DeckCell", for: indexPath) as! CustomTableViewCell
         
-        let aDeck = sampleMatrix[indexPath.row]
+        let aDeck = decksArray[indexPath.row]
         cell.deckLabel.text = " \(aDeck.name)"
         cell.numberOfCardsInDeckLabel.text = "\(aDeck.numberOfCards ?? 0)"
         return cell

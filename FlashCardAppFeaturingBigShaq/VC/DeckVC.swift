@@ -10,14 +10,20 @@ import UIKit
 
 class DeckVC: UIViewController {
     
+    // MARK: Values for data
     let deckView = DeckView()
-    var deck = [Card]()
+    var arrayOfCards = [Card]()
+    var deck = ""
     var currentCard = 0 //The index you're currently at in the deck
+    public func injectADeck(deckname: String) {
+        self.deck = deckname
+    }
+    
+    // MARK: Values for animation
     var widthValue: CGFloat = 0
     var heightValue: CGFloat  = 0
     var xOffSet: CGFloat = 0
     var yOffSet: CGFloat = 0
-    
     var startingPosition: CGRect = .zero {
         didSet {
             self.widthValue = startingPosition.width
@@ -27,10 +33,6 @@ class DeckVC: UIViewController {
         }
     }
     
-    public func injectADeck(deck: [Card]) {
-        self.deck = deck
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -38,6 +40,17 @@ class DeckVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         startingPosition = deckView.questionTextView.frame
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DatabaseService.manager.getAllFlashcards(forUserID: (AuthUserService.manager.getCurrentUser()?.uid)!, andDeck: deck) { (Cards) in
+            if let cards = Cards {
+                self.arrayOfCards = cards
+            } else {
+                print("Couldn't get cards or there are no cards")
+                //TODO: Maybe show an image of no data as a background
+            }
+        }
     }
     
     private func setupView() {
@@ -54,9 +67,9 @@ class DeckVC: UIViewController {
     }
     
     private func loadCard() {
-        deckView.questionTextView.text = deck[currentCard].question
-        deckView.answerTextView.text = deck[currentCard].answer
-        navigationItem.title = deck[currentCard].category
+        deckView.questionTextView.text = arrayOfCards[currentCard].question
+        deckView.answerTextView.text = arrayOfCards[currentCard].answer
+        navigationItem.title = self.deck
     }
     
     @objc private func showAnswerClicked() {

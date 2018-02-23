@@ -51,7 +51,8 @@ extension DatabaseService {
         ref.setValue(["question": card.question,
                       "answer": card.answer,
                       "category": card.category,
-                      "gotRight": card.gotRight ?? false]) { (error, nil) in
+                      "gotRight": card.gotRight ?? false,
+                      "userID": card.userID]) { (error, nil) in
                         if let error = error {
                             print(error)
                         } else {
@@ -75,4 +76,5 @@ extension DatabaseService {
                         }
         }
     }
+    
 }
