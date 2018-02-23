@@ -31,28 +31,6 @@ class AddCardView: DismissViewTemplate {
         return lb
     }()
     
-    lazy var decksToPickFromButton: UIButton = {
-        let button = UIButton()
-        button.isHidden = true
-        button.setTitle("Decks", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor(red: 0.263, green: 0.353, blue: 0.576, alpha: 1.00)
-        return button
-    }()
-    
-    //Tableview for DecksToPickFrom
-    //Starts off hidden. When the Decks button is clicked it should show all available decks. Clicking on any cell makes it disappear again and change the Button Title to the selected cell's text
-    lazy var availableDecksTableView: UITableView = {
-        let tv = UITableView()
-        //create and register a cell
-        tv.register(CustomTableViewCell.self, forCellReuseIdentifier: "DeckCell")
-        tv.isHidden = true
-        tv.tag = 1
-        tv.backgroundColor = .clear
-        tv.separatorColor = .clear
-        return tv
-    }()
-    
     lazy var frontLabel: UILabel = {
         let lb = UILabel()
         lb.text = "Front Side"
@@ -150,14 +128,12 @@ class AddCardView: DismissViewTemplate {
     private func commonInit() {
         addSubview(cardNameLabel)
         addSubview(deckLabel)
-        addSubview(decksToPickFromButton)
         addSubview(frontLabel)
         addSubview(frontTextField)
         addSubview(backLabel)
         addSubview(backTextField)
         addSubview(categoryButton)
         addSubview(categoryTableView)
-        addSubview(availableDecksTableView)
         addSubview(addButton)
         
         cardNameLabel.snp.makeConstraints { (make) in
@@ -169,18 +145,6 @@ class AddCardView: DismissViewTemplate {
             make.top.equalTo(cardNameLabel.snp.bottom)
             make.leading.equalTo(containerView.snp.leading)
             make.width.equalTo(containerView.snp.width).multipliedBy(0.3)
-        }
-        decksToPickFromButton.snp.makeConstraints { (make) in
-            make.leading.equalTo(deckLabel.snp.trailing)
-            make.top.equalTo(deckLabel.snp.top)
-            make.bottom.equalTo(deckLabel.snp.bottom)
-            make.width.equalTo(containerView.snp.width).multipliedBy(0.6)
-        }
-        availableDecksTableView.snp.makeConstraints { (make) in
-            make.top.equalTo(decksToPickFromButton.snp.bottom)
-            make.leading.equalTo(decksToPickFromButton.snp.leading)
-            make.trailing.equalTo(decksToPickFromButton.snp.trailing)
-            make.bottom.equalTo(containerView.snp.bottom)
         }
         frontLabel.snp.makeConstraints { (make) in
             make.top.equalTo(deckLabel.snp.bottom).offset(10)

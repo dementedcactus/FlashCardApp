@@ -15,7 +15,6 @@ class DatabaseService: NSObject {
     private override init() {
         self.rootRef = Database.database().reference()
         self.usersRef = self.rootRef.child("users")
-        self.categoriesRef = self.rootRef.child("categories")
         self.cardsRef = self.rootRef.child("cards")
         self.decksRef = self.rootRef.child("decks")
         super.init()
@@ -23,12 +22,9 @@ class DatabaseService: NSObject {
     
     /// The singleton object for the DatabaseService API client.
     static let manager = DatabaseService()
-    
     public weak var delegate: DatabaseServiceDelegate?
-    
     var rootRef: DatabaseReference!
     var usersRef: DatabaseReference!
-    var categoriesRef: DatabaseReference!
     var cardsRef: DatabaseReference!
     var decksRef: DatabaseReference!
     
@@ -38,7 +34,6 @@ class DatabaseService: NSObject {
     public func stopObserving() {
         rootRef.removeAllObservers()
         usersRef.removeAllObservers()
-        categoriesRef.removeAllObservers()
         cardsRef.removeAllObservers()
         decksRef.removeAllObservers()
         
@@ -57,9 +52,7 @@ class DatabaseService: NSObject {
     public func checkIfDisplayNameIsTaken(_ newName: String, currentUserID: String?, completion: @escaping (_ isTaken: Bool, _ oldName: String, _ newName: String) -> Void) {
         usersRef.observeSingleEvent(of: .value) { (dataSnapshot) in
             var oldName: String!
-            
             for childSnapShot in dataSnapshot.children.allObjects as! [DataSnapshot] {
-                
                 guard let userDict = childSnapShot.value as? [String : Any] else {
                     return
                 }
@@ -86,7 +79,6 @@ class DatabaseService: NSObject {
             }
             if let oldName = oldName {
                 completion(false, oldName, newName)
-                
                 if let currentUserID = currentUserID {
                     self.usersRef.child(currentUserID).child("displayName").setValue(newName, withCompletionBlock: { (error, _) in
                         if let error = error {
@@ -96,7 +88,6 @@ class DatabaseService: NSObject {
                         }
                     })
                 }
-                
                 return
             } else {
                 completion(false, newName, newName)
@@ -106,15 +97,6 @@ class DatabaseService: NSObject {
     }
 }
 /*
-import Foundation
-import FirebaseDatabase
-
-@objc protocol DatabaseServiceDelegate: class {
-    @objc optional func didAddFlashcard(_ databaseService: DatabaseService)
-    @objc optional func didFailAddingFlashcard(_ databaseService: DatabaseService, errorMessage: String)
-    @objc optional func didAddCategory(_ databaseService: DatabaseService)
-    @objc optional func didFailAddingCategory(_ databaseService: DatabaseService, errorMessage: String)
-}
 
 class DatabaseService: NSObject {
     override init() {
@@ -132,7 +114,6 @@ class DatabaseService: NSObject {
     public weak var delegate: DatabaseServiceDelegate?
 }
 
-
 extension DatabaseService {
     func getAllCategories(fromUserID userID: String, completion: @escaping ([Category]?) -> Void) {
         let categoryRef = categoriesRef.child(userID)
@@ -142,7 +123,6 @@ extension DatabaseService {
                 completion(nil)
                 return
             }
-            
             var categories: [Category] = []
             for categorySnapshot in categoriesSnapshot {
                 guard let categoryDict = categorySnapshot.value as? [String : Any] else {
@@ -168,7 +148,6 @@ extension DatabaseService {
                 completion(nil)
                 return
             }
-            
             var flashcards: [Flashcard] = []
             for flashcardSnapshot in flashcardsSnapshot {
                 guard let flashcardDict = flashcardSnapshot.value as? [String : Any] else {
@@ -181,43 +160,12 @@ extension DatabaseService {
                     completion(nil)
                     return
                 }
-                
                 if flashcard.category != categoryName {
                     continue
                 }
-                
                 flashcards.append(flashcard)
             }
             completion(flashcards.sortedByTimestamp())
-        }
-    }
-}
-
-
-extension DatabaseService {
-    public func addFlashcard(_ flashcard: Flashcard) {
-        var flashcard = flashcard
-        let flashcardRef = flashcardsRef.child(flashcard.userID).childByAutoId()
-        flashcard.flashcardID = flashcardRef.key
-        let flashcardJSON = flashcard.toJSON()
-        flashcardRef.setValue(flashcardJSON) { (error, _) in
-            if let error = error {
-                self.delegate?.didFailAddingFlashcard?(self, errorMessage: error.localizedDescription)
-            } else {
-                self.delegate?.didAddFlashcard?(self)
-            }
-        }
-    }
-    public func addCategory(_ category: Category) {
-        let category = category
-        let categoryRef = categoriesRef.child(category.userID).child(category.name)
-        let categoryJSON = category.toJSON()
-        categoryRef.setValue(categoryJSON) { (error, _) in
-            if let error = error {
-                self.delegate?.didFailAddingCategory?(self, errorMessage: error.localizedDescription)
-            } else {
-                self.delegate?.didAddCategory?(self)
-            }
         }
     }
 }

@@ -13,15 +13,8 @@ class AddingThingsVC: UIViewController {
     private let addingThingsView = AddingThingsView()
     private let addCardVC = AddCardVC()
     
-    private var decksToPassOn = [Deck]()
-    
-    public func decksToPassIn(decksToPassIn: [Deck]) {
-        self.decksToPassOn = decksToPassIn
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupView()
     }
 
@@ -64,7 +57,6 @@ class AddingThingsVC: UIViewController {
     @objc private func addCardAction() {
         addCardVC.modalTransitionStyle = .coverVertical
         addCardVC.modalPresentationStyle = .overCurrentContext
-        addCardVC.decksToPassIn(decksToPassIn: decksToPassOn)
         present(addCardVC, animated: true, completion: nil)
     }
 

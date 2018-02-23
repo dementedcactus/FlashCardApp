@@ -17,7 +17,6 @@ class AllCardsVC: UIViewController {
             allCardsView.collectionView.reloadData()
         }
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +28,7 @@ class AllCardsVC: UIViewController {
         navigationItem.title = "All Cards"
         allCardsView.collectionView.dataSource = self
         allCardsView.collectionView.delegate = self
-        
-        
     }
-
-    
-
 }
 extension AllCardsVC: UICollectionViewDelegate {
     

@@ -48,7 +48,6 @@ class AllDecksVC: UIViewController {
     @objc private func leftBarButtonClicked() {
         addingThingsVC.modalTransitionStyle = .crossDissolve
         addingThingsVC.modalPresentationStyle = .overCurrentContext
-        addingThingsVC.decksToPassIn(decksToPassIn: sampleMatrix)
         present(addingThingsVC, animated: true, completion: nil)
     }
     
@@ -77,7 +76,6 @@ class AllDecksVC: UIViewController {
         AuthUserService.manager.signOut()
         self.navigationController?.popToRootViewController(animated: true)
         self.menuView.removeFromSuperview()
-//        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     // Make the Status Bar Light/Dark Content for this VC

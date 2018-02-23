@@ -12,21 +12,13 @@ class AddCardVC: UIViewController {
 
     let addCardView = AddCardView()
     
+    // Each Deck is a Category. The categories array should actually be populated by the names of the decks.
+    
     let categories = ["Arrays", "Big O Runtimes", "Bits/Bytes/Number Systems", "Data Structures", "General", "Graphs", "Hashmaps", "Life Cycles", "LinkedLists", "Queues", "Recursion", "Sorting", "Stacks", "Trees", "Other"]
-
-    var sampleDecks: [Deck] = Deck.sampleMatrix
-    
-    public func decksToPassIn(decksToPassIn: [Deck]) {
-        self.sampleDecks = decksToPassIn
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        addCardView.availableDecksTableView.dataSource = self
-        addCardView.availableDecksTableView.delegate = self
-        addCardView.decksToPickFromButton.addTarget(self, action: #selector(availableDecksButtonAction), for: .touchUpInside)
         addCardView.categoryTableView.dataSource = self
         addCardView.categoryTableView.delegate = self
         addCardView.categoryButton.addTarget(self, action: #selector(categoryButtonAction), for: .touchUpInside)
@@ -65,32 +57,6 @@ class AddCardVC: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
         
-    }
-    
-    @objc private func availableDecksButtonAction(sender: UIButton!) {
-        print("Button tapped")
-        if addCardView.availableDecksTableView.isHidden == true {
-            addCardView.availableDecksTableView.isHidden = false
-            animateAvailableDecksTV()
-        } else {
-            addCardView.availableDecksTableView.isHidden = true
-        }
-    }
-    
-    func animateAvailableDecksTV() {
-        addCardView.availableDecksTableView.reloadData()
-        let cells = addCardView.availableDecksTableView.visibleCells
-        let tableViewHeight = addCardView.availableDecksTableView.bounds.size.height
-        for cell in cells {
-            cell.transform = CGAffineTransform(translationX: 0, y: -tableViewHeight)
-        }
-        var delayCounter = 0
-        for cell in cells {
-            UIView.animate(withDuration: 1.75, delay: Double(delayCounter) * 0.05, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-                cell.transform = CGAffineTransform.identity
-            }, completion: nil)
-            delayCounter += 1
-        }
     }
     
     @objc private func categoryButtonAction(sender: UIButton!) {
@@ -137,33 +103,21 @@ class AddCardVC: UIViewController {
 }
 extension AddCardVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == self.addCardView.availableDecksTableView {
-            return sampleDecks.count
-        } else {
+
             return categories.count
-        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var displaycell = UITableViewCell()
         
-        if tableView == self.addCardView.availableDecksTableView {
-            var cell:CustomTableViewCell?
-            cell = tableView.dequeueReusableCell(withIdentifier: "DeckCell", for: indexPath) as? CustomTableViewCell
-            let deck = sampleDecks[indexPath.row]
-            cell!.deckLabel.text = " \(deck.name)"
-            cell!.numberOfCardsInDeckLabel.text = "\(deck.numberOfCards ?? 0)"
-            displaycell = cell!
-            
-        } else if tableView == self.addCardView.categoryTableView {
             var cell:CategoryTableViewCell?
             cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as? CategoryTableViewCell
             
             let category = categories[indexPath.row]
             cell!.categoryLabel.text = "\(category)"
             displaycell = cell!
-        }
         
         return displaycell
     }
@@ -171,15 +125,9 @@ extension AddCardVC: UITableViewDataSource {
 }
 extension AddCardVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == self.addCardView.availableDecksTableView {
-            let deck = sampleDecks[indexPath.row].name
-            addCardView.decksToPickFromButton.setTitle(deck, for: .normal)
-            addCardView.availableDecksTableView.isHidden = true
-        } else {
             let category = categories[indexPath.row]
             addCardView.categoryButton.setTitle(category, for: .normal)
             addCardView.categoryTableView.isHidden = true
-        }
     }
 }
 
