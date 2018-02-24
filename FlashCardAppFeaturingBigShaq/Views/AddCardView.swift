@@ -20,17 +20,6 @@ class AddCardView: DismissViewTemplate {
         return lb
     }()
     
-    lazy var deckLabel: UILabel = {
-        let lb = UILabel()
-        lb.isHidden = true
-        lb.text = "Deck:"
-        lb.textAlignment = .center
-        lb.numberOfLines = 0
-        lb.textColor = .white
-        lb.font = .systemFont(ofSize: 20)
-        return lb
-    }()
-    
     lazy var frontLabel: UILabel = {
         let lb = UILabel()
         lb.text = "Front Side"
@@ -127,7 +116,6 @@ class AddCardView: DismissViewTemplate {
     
     private func commonInit() {
         addSubview(cardNameLabel)
-        addSubview(deckLabel)
         addSubview(frontLabel)
         addSubview(frontTextField)
         addSubview(backLabel)
@@ -141,13 +129,8 @@ class AddCardView: DismissViewTemplate {
             make.leading.equalTo(containerView.snp.leading)
             make.trailing.equalTo(containerView.snp.trailing)
         }
-        deckLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(cardNameLabel.snp.bottom)
-            make.leading.equalTo(containerView.snp.leading)
-            make.width.equalTo(containerView.snp.width).multipliedBy(0.3)
-        }
         frontLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(deckLabel.snp.bottom).offset(10)
+            make.top.equalTo(cardNameLabel.snp.bottom).offset(20)
             make.leading.equalTo(containerView.snp.leading)
             make.width.equalTo(containerView.snp.width).multipliedBy(1)
         }
@@ -155,6 +138,7 @@ class AddCardView: DismissViewTemplate {
             make.top.equalTo(frontLabel.snp.bottom).offset(10)
             make.centerX.equalTo(containerView.snp.centerX)
             make.width.equalTo(containerView.snp.width).multipliedBy(0.8)
+            make.height.equalTo(containerView.snp.height).multipliedBy(0.15)
         }
         backLabel.snp.makeConstraints { (make) in
             make.top.equalTo(frontTextField.snp.bottom).offset(10)
@@ -165,6 +149,7 @@ class AddCardView: DismissViewTemplate {
             make.top.equalTo(backLabel.snp.bottom).offset(10)
             make.centerX.equalTo(containerView.snp.centerX)
             make.width.equalTo(containerView.snp.width).multipliedBy(0.8)
+            make.height.equalTo(frontTextField.snp.height)
         }
         categoryButton.snp.makeConstraints { (make) in
             make.top.equalTo(backTextField.snp.bottom).offset(10)

@@ -21,7 +21,7 @@ class DeckVC: UIViewController {
             }
         }
     }
-    var deck = ""
+    var deck = "" // This is the deck's name a.k.a. category
     var currentCard = 0 //The index you're currently at in the deck
     public func injectADeck(deckname: String) {
         self.deck = deckname
@@ -52,7 +52,7 @@ class DeckVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        DatabaseService.manager.getAllFlashcards(forUserID: (AuthUserService.manager.getCurrentUser()?.uid)!, andDeck: deck) { (Cards) in
+        DatabaseService.manager.getAllFlashcardsByCategory(forUserID: (AuthUserService.manager.getCurrentUser()?.uid)!, andDeck: deck) { (Cards) in
             if let cards = Cards {
                 self.arrayOfCards = cards
                 

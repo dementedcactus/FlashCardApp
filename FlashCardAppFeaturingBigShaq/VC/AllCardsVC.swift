@@ -25,7 +25,16 @@ class AllCardsVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // TODO: Add a new function to get all of the cards on firebase and load them into the allCardsArray. 
+        
+        DatabaseService.manager.getAllFlashcards(forUserID: (AuthUserService.manager.getCurrentUser()?.uid)!) { (Cards) in
+            if let cards = Cards {
+                self.allCardsArray = cards
+                
+            } else {
+                print("Couldn't get cards or there are no cards")
+                //TODO: Maybe show an image of no data as a background
+            }
+        }
     }
     
     func setupView() {
@@ -56,6 +65,7 @@ extension AllCardsVC: UICollectionViewDataSource {
         
         cell.questionTextView.text = aFlashCard.question
         cell.answerTextView.text = aFlashCard.answer
+        cell.categoryLabel.text = aFlashCard.category
         
         return cell
     }

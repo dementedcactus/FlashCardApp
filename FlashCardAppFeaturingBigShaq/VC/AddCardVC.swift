@@ -22,6 +22,8 @@ class AddCardVC: UIViewController {
         setupView()
         addCardView.categoryTableView.dataSource = self
         addCardView.categoryTableView.delegate = self
+        addCardView.frontTextField.delegate = self
+        addCardView.backTextField.delegate = self
         addCardView.categoryButton.addTarget(self, action: #selector(categoryButtonAction), for: .touchUpInside)
         addCardView.addButton.addTarget(self, action: #selector(addButtonAction), for: .touchUpInside)
         DatabaseService.manager.showAlertDelegate = self
@@ -130,6 +132,14 @@ extension AddCardVC: UITableViewDelegate {
             let category = categories[indexPath.row]
             addCardView.categoryButton.setTitle(category, for: .normal)
             addCardView.categoryTableView.isHidden = true
+    }
+}
+extension AddCardVC: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.becomeFirstResponder()
+    }
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
+        textField.resignFirstResponder()
     }
 }
 extension AddCardVC: ShowAlertDelegate {

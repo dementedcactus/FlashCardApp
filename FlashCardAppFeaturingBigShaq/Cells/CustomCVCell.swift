@@ -35,6 +35,8 @@ class CustomCVCell: UICollectionViewCell {
         lb.backgroundColor = .clear
         lb.numberOfLines = 0
         lb.text = "Category"
+        lb.textColor = .white
+        lb.textAlignment = .center
         return lb
     }()
     
@@ -56,9 +58,9 @@ class CustomCVCell: UICollectionViewCell {
     
     private func setupObjects() {
         addSubview(containerView)
-        addSubview(answerTextView)
         addSubview(questionTextView)
         addSubview(categoryLabel)
+        addSubview(answerTextView)
     }
     
     private func setupViews() {
@@ -69,18 +71,11 @@ class CustomCVCell: UICollectionViewCell {
             make.bottom.equalTo(self.snp.bottom)
         }
         
-        answerTextView.snp.makeConstraints { (make) in
+        questionTextView.snp.makeConstraints { (make) in
             make.top.equalTo(containerView.snp.top)
             make.leading.equalTo(containerView.snp.leading)
             make.trailing.equalTo(containerView.snp.trailing)
-            make.height.equalTo(containerView.snp.height).multipliedBy(0.4)
-        }
-        
-        questionTextView.snp.makeConstraints { (make) in
-            make.bottom.equalTo(containerView.snp.bottom)
-            make.leading.equalTo(containerView.snp.leading)
-            make.trailing.equalTo(containerView.snp.trailing)
-            make.height.equalTo(containerView.snp.height).multipliedBy(0.4)
+            make.height.equalTo(containerView.snp.height).multipliedBy(0.39)
         }
         
         categoryLabel.snp.makeConstraints { (make) in
@@ -89,6 +84,12 @@ class CustomCVCell: UICollectionViewCell {
             make.trailing.equalTo(containerView.snp.trailing)
             make.height.equalTo(containerView.snp.height).multipliedBy(0.2)
         }
+        
+        answerTextView.snp.makeConstraints { (make) in
+            make.bottom.equalTo(categoryLabel.snp.top)
+            make.leading.equalTo(containerView.snp.leading)
+            make.trailing.equalTo(containerView.snp.trailing)
+            make.height.equalTo(containerView.snp.height).multipliedBy(0.39)
+        }
     }
-
 }

@@ -70,7 +70,7 @@ extension DatabaseService {
         }
     }
     
-    func getAllFlashcards(forUserID userID: String, andDeck deck: String, completion: @escaping ([Card]?) -> Void) {
+    func getAllFlashcardsByCategory(forUserID userID: String, andDeck deck: String, completion: @escaping ([Card]?) -> Void) {
         
         cardsRef.observeSingleEvent(of: .value) { (dataSnapshot) in
             guard let flashcardsSnapshot = dataSnapshot.children.allObjects as? [DataSnapshot] else {
@@ -116,6 +116,53 @@ extension DatabaseService {
                 flashcards.append(flashcard)
             }
             //completion(flashcards.sortedByTimestamp())
+            completion(flashcards)
+        }
+    }
+    
+    func getAllFlashcards(forUserID userID: String, completion: @escaping ([Card]?) -> Void) {
+        
+        cardsRef.observeSingleEvent(of: .value) { (dataSnapshot) in
+            guard let flashcardsSnapshot = dataSnapshot.children.allObjects as? [DataSnapshot] else {
+                print("could not get children snapshots")
+                completion(nil)
+                return
+            }
+            var flashcards: [Card] = [] // This is what gets returned in the completion handler
+            for flashcardSnapshot in flashcardsSnapshot {
+                guard let flashcardDict = flashcardSnapshot.value as? [String : Any] else {
+                    print("could not get flashcard dict")
+                    completion(nil)
+                    return
+                }
+                guard let downcastedQuestion = flashcardDict["question"] as? String else {
+                    completion(nil)
+                    return
+                }
+                guard let downcastedAnswer = flashcardDict["answer"] as? String else {
+                    completion(nil)
+                    return
+                }
+                guard let downcastedCategory = flashcardDict["category"] as? String else {
+                    completion(nil)
+                    return
+                }
+                guard let downcastedGotRight = flashcardDict["gotRight"] as? Bool else {
+                    completion(nil)
+                    return
+                }
+                guard let downcastedUserID = flashcardDict["userID"] as? String else {
+                    completion(nil)
+                    return
+                }
+                let flashcard = Card(question: downcastedQuestion,
+                                     answer: downcastedAnswer,
+                                     category: downcastedCategory,
+                                     gotRight: downcastedGotRight,
+                                     userID: downcastedUserID)
+
+                flashcards.append(flashcard)
+            }
             completion(flashcards)
         }
     }
