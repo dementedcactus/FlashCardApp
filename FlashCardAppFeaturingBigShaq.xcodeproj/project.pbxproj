@@ -28,6 +28,9 @@
 		DB41C39D20332625005CEFDA /* FlashCardAppFeaturingBigShaqUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41C39C20332625005CEFDA /* FlashCardAppFeaturingBigShaqUITests.swift */; };
 		DB41C3AB20332850005CEFDA /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41C3AA20332850005CEFDA /* LoginVC.swift */; };
 		DB41C3B1203337B1005CEFDA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB41C3B0203337B1005CEFDA /* LoginView.swift */; };
+		DB6526492041F02F00950C3B /* DatabaseService+Edit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6526482041F02F00950C3B /* DatabaseService+Edit.swift */; };
+		DB65264B2041F6C200950C3B /* EditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65264A2041F6C200950C3B /* EditCardView.swift */; };
+		DB65264D2041FBE200950C3B /* EditCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB65264C2041FBE200950C3B /* EditCardVC.swift */; };
 		DB7C24E2203F3FA700222943 /* NetworkConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7C24E1203F3FA700222943 /* NetworkConnectivity.swift */; };
 		DB7C24E4203F81BE00222943 /* AllCardsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7C24E3203F81BE00222943 /* AllCardsVC.swift */; };
 		DB7C24E6203F821C00222943 /* AllCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7C24E5203F821C00222943 /* AllCardsView.swift */; };
@@ -100,6 +103,9 @@
 		DB41C39E20332625005CEFDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB41C3AA20332850005CEFDA /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		DB41C3B0203337B1005CEFDA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		DB6526482041F02F00950C3B /* DatabaseService+Edit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseService+Edit.swift"; sourceTree = "<group>"; };
+		DB65264A2041F6C200950C3B /* EditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCardView.swift; sourceTree = "<group>"; };
+		DB65264C2041FBE200950C3B /* EditCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCardVC.swift; sourceTree = "<group>"; };
 		DB7C24E1203F3FA700222943 /* NetworkConnectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectivity.swift; sourceTree = "<group>"; };
 		DB7C24E3203F81BE00222943 /* AllCardsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCardsVC.swift; sourceTree = "<group>"; };
 		DB7C24E5203F821C00222943 /* AllCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCardsView.swift; sourceTree = "<group>"; };
@@ -193,6 +199,7 @@
 				DB2770D5203E2E26007BAD7B /* DatabaseServiceDelegate.swift */,
 				DB2770D7203E2E45007BAD7B /* DatabaseService+Get.swift */,
 				DB2770D9203E2E5A007BAD7B /* DatabaseService+Add.swift */,
+				DB6526482041F02F00950C3B /* DatabaseService+Edit.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -273,6 +280,7 @@
 				DBD3D8212033D23A0033AAF7 /* AllDecksVC.swift */,
 				DBF43556203915C900E96C7D /* CreateAccountVC.swift */,
 				DBD3D81B2033CDBE0033AAF7 /* DeckVC.swift */,
+				DB65264C2041FBE200950C3B /* EditCardVC.swift */,
 				DB41C3AA20332850005CEFDA /* LoginVC.swift */,
 			);
 			path = VC;
@@ -287,6 +295,7 @@
 				DBD3D8232033D2530033AAF7 /* AllDecksView.swift */,
 				DBF43558203915DD00E96C7D /* CreateAccountView.swift */,
 				DBD3D81F2033CDE40033AAF7 /* DeckView.swift */,
+				DB65264A2041F6C200950C3B /* EditCardView.swift */,
 				DBF43568203A2DB900E96C7D /* DismissViewTemplate.swift */,
 				DB41C3B0203337B1005CEFDA /* LoginView.swift */,
 				DBD3D81D2033CDD50033AAF7 /* MenuView.swift */,
@@ -307,6 +316,7 @@
 		DB41C3AF20333790005CEFDA /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				DB6526472041E8C100950C3B /* Storage */,
 				DBF4355420390FD700E96C7D /* Alert.swift */,
 				DBB6898620334B3F00E28BD6 /* Settings.swift */,
 				DBB6898420334A1B00E28BD6 /* StyleSheet.swift */,
@@ -315,6 +325,13 @@
 				DB2770D1203E2DAD007BAD7B /* Database */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		DB6526472041E8C100950C3B /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -634,6 +651,8 @@
 				DBB6898520334A1B00E28BD6 /* StyleSheet.swift in Sources */,
 				DB7C24E4203F81BE00222943 /* AllCardsVC.swift in Sources */,
 				DBF4356B203A3D5E00E96C7D /* CategoryTableViewCell.swift in Sources */,
+				DB65264B2041F6C200950C3B /* EditCardView.swift in Sources */,
+				DB65264D2041FBE200950C3B /* EditCardVC.swift in Sources */,
 				DBD3D81E2033CDD50033AAF7 /* MenuView.swift in Sources */,
 				DBD3D8222033D23A0033AAF7 /* AllDecksVC.swift in Sources */,
 				DB2770DA203E2E5A007BAD7B /* DatabaseService+Add.swift in Sources */,
@@ -646,6 +665,7 @@
 				DBD5DDCE203632D600DF79EC /* AddingThingsVC.swift in Sources */,
 				DB2770D6203E2E26007BAD7B /* DatabaseServiceDelegate.swift in Sources */,
 				DBF43557203915C900E96C7D /* CreateAccountVC.swift in Sources */,
+				DB6526492041F02F00950C3B /* DatabaseService+Edit.swift in Sources */,
 				DB0EF0B02034CFFF001FD5E5 /* CustomTableViewCell.swift in Sources */,
 				DB7C24E8203F843800222943 /* CustomCVCell.swift in Sources */,
 				DB2770D4203E2DF1007BAD7B /* DatabaseService.swift in Sources */,

@@ -20,6 +20,7 @@ class CustomCVCell: UICollectionViewCell {
         let tv = UITextView()
         tv.text = "Sample Question Text Here"
         Stylesheet.Objects.Textviews.Completed.style(textview: tv)
+        tv.isEditable = false
         return tv
     }()
     
@@ -27,6 +28,7 @@ class CustomCVCell: UICollectionViewCell {
         let tv = UITextView()
         tv.text = "Sample Answer Text Here"
         Stylesheet.Objects.Textviews.Completed.style(textview: tv)
+        tv.isEditable = false
         return tv
     }()
     
@@ -59,8 +61,8 @@ class CustomCVCell: UICollectionViewCell {
     private func setupObjects() {
         addSubview(containerView)
         addSubview(questionTextView)
-        addSubview(categoryLabel)
         addSubview(answerTextView)
+        addSubview(categoryLabel)
     }
     
     private func setupViews() {
@@ -75,21 +77,21 @@ class CustomCVCell: UICollectionViewCell {
             make.top.equalTo(containerView.snp.top)
             make.leading.equalTo(containerView.snp.leading)
             make.trailing.equalTo(containerView.snp.trailing)
-            make.height.equalTo(containerView.snp.height).multipliedBy(0.39)
+            make.height.equalTo(containerView.snp.height).multipliedBy(0.35)
+        }
+        
+        answerTextView.snp.makeConstraints { (make) in
+            make.top.equalTo(questionTextView.snp.bottom).offset(1)
+            make.leading.equalTo(containerView.snp.leading)
+            make.trailing.equalTo(containerView.snp.trailing)
+            make.height.equalTo(containerView.snp.height).multipliedBy(0.35)
         }
         
         categoryLabel.snp.makeConstraints { (make) in
             make.bottom.equalTo(containerView.snp.bottom)
+            make.top.equalTo(answerTextView.snp.bottom)
             make.leading.equalTo(containerView.snp.leading)
             make.trailing.equalTo(containerView.snp.trailing)
-            make.height.equalTo(containerView.snp.height).multipliedBy(0.2)
-        }
-        
-        answerTextView.snp.makeConstraints { (make) in
-            make.bottom.equalTo(categoryLabel.snp.top)
-            make.leading.equalTo(containerView.snp.leading)
-            make.trailing.equalTo(containerView.snp.trailing)
-            make.height.equalTo(containerView.snp.height).multipliedBy(0.39)
         }
     }
 }

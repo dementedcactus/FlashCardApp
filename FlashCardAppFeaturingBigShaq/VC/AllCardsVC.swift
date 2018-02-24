@@ -11,7 +11,7 @@ import UIKit
 class AllCardsVC: UIViewController {
     
     let allCardsView = AllCardsView()
-    let cellSpacing: CGFloat = 5
+    let cellSpacing: CGFloat = 5 // cell spacing
     var allCardsArray = [Card]() {
         didSet {
             allCardsView.collectionView.reloadData()
@@ -42,11 +42,24 @@ class AllCardsVC: UIViewController {
         navigationItem.title = "All Cards"
         allCardsView.collectionView.dataSource = self
         allCardsView.collectionView.delegate = self
+        DatabaseService.manager.refreshDelegate = self
     }
 }
 extension AllCardsVC: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let aCard = allCardsArray[indexPath.row]
+        
+        // Pass Card into EditCardVC
+        let editCardVC = EditCardVC()
+        
+        editCardVC.getCardToEdit(card: aCard)
+        
+        // TODO: Add segue to EditCardVC
+        editCardVC.modalTransitionStyle = .crossDissolve
+        editCardVC.modalPresentationStyle = .overCurrentContext
+        present(editCardVC, animated: true, completion: nil)
     }
     
 }
@@ -93,7 +106,19 @@ extension AllCardsVC: UICollectionViewDelegateFlowLayout {
         return cellSpacing
     }
 }
-
+extension AllCardsVC: RefreshDelegate {
+    func refreshTableView() {
+        DatabaseService.manager.getAllFlashcards(forUserID: (AuthUserService.manager.getCurrentUser()?.uid)!) { (Cards) in
+            if let cards = Cards {
+                self.allCardsArray = cards
+                
+            } else {
+                print("Couldn't get cards or there are no cards")
+                //TODO: Maybe show an image of no data as a background
+            }
+        }
+    }
+}
 
 
 

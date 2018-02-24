@@ -45,10 +45,8 @@ class AddCardVC: UIViewController {
                     return
                 }
 
-                let card = Card(question: front, answer: back, category: category, gotRight: false, userID: (AuthUserService.manager.getCurrentUser()?.uid)!)
+                let card = Card(question: front, answer: back, category: category, gotRight: false, userID: (AuthUserService.manager.getCurrentUser()?.uid)!, cardUID: DatabaseService.manager.cardsRef.childByAutoId().key)
                 DatabaseService.manager.addCard(card)
-                
-                //TODO: Add custom delegate for alert when card adds to the database
                 
             } else {
                 //This triggers if user didn't put text in the backTextView

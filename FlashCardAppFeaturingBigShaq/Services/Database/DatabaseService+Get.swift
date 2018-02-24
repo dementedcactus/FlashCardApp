@@ -36,7 +36,7 @@ extension DatabaseService {
     func getAllDecks(fromUserID userID: String, completion: @escaping ([Deck]?) -> Void) {
         let deckRef = decksRef.child(userID)
         deckRef.observeSingleEvent(of: .value) { (dataSnapshot) in
-            print(dataSnapshot)
+            //print(dataSnapshot)
             guard let arrayOfDeckSnapshot = dataSnapshot.children.allObjects as? [DataSnapshot] else {
                 print("could not get children snapshots")
                 completion(nil)
@@ -105,11 +105,16 @@ extension DatabaseService {
                     completion(nil)
                     return
                 }
+                guard let downcastedCardID = flashcardDict["cardUID"] as? String else {
+                    completion(nil)
+                    return
+                }
                 let flashcard = Card(question: downcastedQuestion,
                                      answer: downcastedAnswer,
                                      category: downcastedCategory,
                                      gotRight: downcastedGotRight,
-                                     userID: downcastedUserID)
+                                     userID: downcastedUserID,
+                                     cardUID: downcastedCardID)
                 if flashcard.category != deck {
                     continue
                 }
@@ -155,11 +160,16 @@ extension DatabaseService {
                     completion(nil)
                     return
                 }
+                guard let downcastedCardID = flashcardDict["cardUID"] as? String else {
+                    completion(nil)
+                    return
+                }
                 let flashcard = Card(question: downcastedQuestion,
                                      answer: downcastedAnswer,
                                      category: downcastedCategory,
                                      gotRight: downcastedGotRight,
-                                     userID: downcastedUserID)
+                                     userID: downcastedUserID,
+                                     cardUID: downcastedCardID)
 
                 flashcards.append(flashcard)
             }
