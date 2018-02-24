@@ -20,6 +20,7 @@ class AllDecksVC: UIViewController {
     var decksArray = [Deck]() {
         didSet {
             allDecksView.tableView.reloadData()
+            // TODO: Add a function here for FileManager that saves the deck names. Then add a function on AddDeckVC that loads the deck names into the categoryTableview.
         }
     }
         
@@ -33,12 +34,14 @@ class AllDecksVC: UIViewController {
         allDecksView.tableView.dataSource = self
         allDecksView.tableView.estimatedRowHeight = 80
         allDecksView.tableView.rowHeight = UITableViewAutomaticDimension
+        DatabaseService.manager.refreshDelegate = self
+        
     }
     
     private func setupView() {
         self.view.addSubview(allDecksView)
-        allDecksView.menuButton.addTarget(self, action: #selector(rightBarButtonClicked), for: .touchUpInside)
-        allDecksView.plusButton.addTarget(self, action: #selector(leftBarButtonClicked), for: .touchUpInside)
+        allDecksView.menuButton.addTarget(self, action: #selector(leftBarButtonClicked), for: .touchUpInside)
+        allDecksView.plusButton.addTarget(self, action: #selector(rightBarButtonClicked), for: .touchUpInside)
         menuView.dismissView.addTarget(self, action: #selector(dismissViewAction(sender:)), for: .touchUpInside)
         menuView.decksButton.addTarget(self, action: #selector(deckButtonAction), for: .touchUpInside)
         menuView.cardBrowserButton.addTarget(self, action: #selector(cardBrowserAction), for: .touchUpInside)
@@ -47,11 +50,11 @@ class AllDecksVC: UIViewController {
         menuView.logoutButton.addTarget(self, action: #selector(logOutButtonAction), for: .touchUpInside)
     }
     
-    @objc private func rightBarButtonClicked() {
+    @objc private func leftBarButtonClicked() {
         self.view.addSubview(menuView)
     }
     
-    @objc private func leftBarButtonClicked() {
+    @objc private func rightBarButtonClicked() {
         addingThingsVC.modalTransitionStyle = .crossDissolve
         addingThingsVC.modalPresentationStyle = .overCurrentContext
         present(addingThingsVC, animated: true, completion: nil)
@@ -95,6 +98,7 @@ class AllDecksVC: UIViewController {
         DatabaseService.manager.getAllDecks(fromUserID: (AuthUserService.manager.getCurrentUser()?.uid)!, completion: { (someData) in
             if let deckArray = someData {
                 self.decksArray = deckArray
+                
             } else {
                 print("Couldn't get decks or there are no decks")
                 //TODO: Maybe show an image of no data as a background
@@ -150,12 +154,26 @@ extension AllDecksVC: UITableViewDataSource {
         
         let aDeck = decksArray[indexPath.row]
         cell.deckLabel.text = " \(aDeck.name)"
-        cell.numberOfCardsInDeckLabel.text = "\(aDeck.numberOfCards ?? 0)"
+        cell.numberOfCardsInDeckLabel.text = ""
         return cell
     }
     
     
 }
+extension AllDecksVC: RefreshDelegate {
+    func refreshTableView() {
+        DatabaseService.manager.getAllDecks(fromUserID: (AuthUserService.manager.getCurrentUser()?.uid)!, completion: { (someData) in
+            if let deckArray = someData {
+                self.decksArray = deckArray
+                
+            } else {
+                print("Couldn't get decks or there are no decks")
+                //TODO: Maybe show an image of no data as a background
+            }
+        })
+    }
+}
+
 
 
 

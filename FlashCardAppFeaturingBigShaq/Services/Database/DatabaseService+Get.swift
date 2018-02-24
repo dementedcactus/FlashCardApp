@@ -36,6 +36,7 @@ extension DatabaseService {
     func getAllDecks(fromUserID userID: String, completion: @escaping ([Deck]?) -> Void) {
         let deckRef = decksRef.child(userID)
         deckRef.observeSingleEvent(of: .value) { (dataSnapshot) in
+            print(dataSnapshot)
             guard let arrayOfDeckSnapshot = dataSnapshot.children.allObjects as? [DataSnapshot] else {
                 print("could not get children snapshots")
                 completion(nil)
@@ -88,7 +89,7 @@ extension DatabaseService {
                     completion(nil)
                     return
                 }
-                guard let downcastedAnswer = flashcardDict["qnswer"] as? String else {
+                guard let downcastedAnswer = flashcardDict["answer"] as? String else {
                     completion(nil)
                     return
                 }

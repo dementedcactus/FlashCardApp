@@ -12,6 +12,7 @@ import FirebaseDatabase
 import FirebaseAuth
 
 extension DatabaseService {
+
     
     /**
      Stores a UserProfile object in the database after account creation.
@@ -59,11 +60,13 @@ extension DatabaseService {
                             print("Card Added")
                         }
         }
+        self.refreshDelegate?.refreshTableView()
+        self.showAlertDelegate?.showAlertDelegate(cardOrDeck: "Card")
     }
     
     public func addDeck(_ deck: Deck) {
         //1. find ref
-        let ref = decksRef.child(deck.userID)
+        let ref = decksRef.child(deck.userID).child(deck.name)
         
         //2. call set value with completion handler
         ref.setValue(["name": deck.name,
@@ -73,6 +76,8 @@ extension DatabaseService {
                             print(error)
                         } else {
                             print("Deck Added")
+                            self.refreshDelegate?.refreshTableView()
+                            self.showAlertDelegate?.showAlertDelegate(cardOrDeck: "Deck")
                         }
         }
     }

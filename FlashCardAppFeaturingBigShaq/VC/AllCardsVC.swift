@@ -23,6 +23,11 @@ class AllCardsVC: UIViewController {
         setupView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // TODO: Add a new function to get all of the cards on firebase and load them into the allCardsArray. 
+    }
+    
     func setupView() {
         view.addSubview(allCardsView)
         navigationItem.title = "All Cards"

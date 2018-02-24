@@ -12,7 +12,15 @@ class DeckVC: UIViewController {
     
     // MARK: Values for data
     let deckView = DeckView()
-    var arrayOfCards = [Card]()
+    var arrayOfCards = [Card]() {
+        didSet {
+            if arrayOfCards.isEmpty {
+                deckView.questionTextView.text = "No data in this deck"
+            } else {
+                loadCard()
+            }
+        }
+    }
     var deck = ""
     var currentCard = 0 //The index you're currently at in the deck
     public func injectADeck(deckname: String) {
@@ -43,9 +51,11 @@ class DeckVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         DatabaseService.manager.getAllFlashcards(forUserID: (AuthUserService.manager.getCurrentUser()?.uid)!, andDeck: deck) { (Cards) in
             if let cards = Cards {
                 self.arrayOfCards = cards
+                
             } else {
                 print("Couldn't get cards or there are no cards")
                 //TODO: Maybe show an image of no data as a background
@@ -59,11 +69,8 @@ class DeckVC: UIViewController {
         deckView.repeatButton.addTarget(self, action: #selector(repeatClicked), for: .touchUpInside)
         deckView.nextQuestionButton.addTarget(self, action: #selector(nextClicked), for: .touchUpInside)
         deckView.previousButton.addTarget(self, action: #selector(previousClicked), for: .touchUpInside)
-        if deck.isEmpty {
-            deckView.questionTextView.text = "No data in this deck"
-        } else {
-            loadCard()
-        }
+        
+        
     }
     
     private func loadCard() {
@@ -86,7 +93,7 @@ class DeckVC: UIViewController {
     @objc private func nextClicked() {
         
         currentCard += 1
-        if currentCard > deck.count - 1 {
+        if currentCard > arrayOfCards.count - 1 {
             let alert = Alert.create(withTitle: "End", andMessage: "End of Deck Reached", withPreferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)

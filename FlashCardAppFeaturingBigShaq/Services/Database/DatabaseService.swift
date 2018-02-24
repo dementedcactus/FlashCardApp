@@ -11,7 +11,20 @@ import FirebaseDatabase
 
 /** This API client is responsible for fetching/pushing data from/to the Firebase database.
  */
+
+protocol RefreshDelegate {
+    func refreshTableView()
+}
+
+protocol ShowAlertDelegate {
+    func showAlertDelegate(cardOrDeck: String)
+}
+    
 class DatabaseService: NSObject {
+    
+    var refreshDelegate: RefreshDelegate?
+    var showAlertDelegate: ShowAlertDelegate?
+    
     private override init() {
         self.rootRef = Database.database().reference()
         self.usersRef = self.rootRef.child("users")

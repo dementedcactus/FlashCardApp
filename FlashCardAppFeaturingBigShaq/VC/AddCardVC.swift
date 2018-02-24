@@ -12,6 +12,7 @@ class AddCardVC: UIViewController {
 
     let addCardView = AddCardView()
     
+    
     // Each Deck is a Category. The categories array should actually be populated by the names of the decks.
     
     let categories = ["Arrays", "Big O Runtimes", "Bits/Bytes/Number Systems", "Data Structures", "General", "Graphs", "Hashmaps", "Life Cycles", "LinkedLists", "Queues", "Recursion", "Sorting", "Stacks", "Trees", "Other"]
@@ -23,7 +24,7 @@ class AddCardVC: UIViewController {
         addCardView.categoryTableView.delegate = self
         addCardView.categoryButton.addTarget(self, action: #selector(categoryButtonAction), for: .touchUpInside)
         addCardView.addButton.addTarget(self, action: #selector(addButtonAction), for: .touchUpInside)
-        
+        DatabaseService.manager.showAlertDelegate = self
     }
     
     @objc private func addButtonAction() {
@@ -45,6 +46,7 @@ class AddCardVC: UIViewController {
                 let card = Card(question: front, answer: back, category: category, gotRight: false, userID: (AuthUserService.manager.getCurrentUser()?.uid)!)
                 DatabaseService.manager.addCard(card)
                 
+                //TODO: Add custom delegate for alert when card adds to the database
                 
             } else {
                 //This triggers if user didn't put text in the backTextView
@@ -129,5 +131,14 @@ extension AddCardVC: UITableViewDelegate {
             addCardView.categoryButton.setTitle(category, for: .normal)
             addCardView.categoryTableView.isHidden = true
     }
+}
+extension AddCardVC: ShowAlertDelegate {
+    func showAlertDelegate(cardOrDeck: String) {
+        let alert = Alert.create(withTitle: "Success", andMessage: "\(cardOrDeck) added!", withPreferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
 }
 

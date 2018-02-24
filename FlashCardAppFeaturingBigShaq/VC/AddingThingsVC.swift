@@ -25,6 +25,7 @@ class AddingThingsVC: UIViewController {
         addingThingsView.dismissView.addTarget(self, action: #selector(dismissViewAction), for: .touchUpInside)
         addingThingsView.addDeckButton.addTarget(self, action: #selector(addDeckAction), for: .touchUpInside)
         addingThingsView.addCardButton.addTarget(self, action: #selector(addCardAction), for: .touchUpInside)
+        DatabaseService.manager.showAlertDelegate = self
     }
     
     @objc private func dismissViewAction() {
@@ -48,7 +49,6 @@ class AddingThingsVC: UIViewController {
                 let deckToAdd = Deck(userID: userID, name: text, numberOfCards: 0)
                 DatabaseService.manager.addDeck(deckToAdd)
             }
-            
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -59,7 +59,11 @@ class AddingThingsVC: UIViewController {
         addCardVC.modalPresentationStyle = .overCurrentContext
         present(addCardVC, animated: true, completion: nil)
     }
-
-    
-
+}
+extension AddingThingsVC: ShowAlertDelegate {
+    func showAlertDelegate(cardOrDeck: String) {
+        let alert = Alert.create(withTitle: "Success", andMessage: "\(cardOrDeck) added!", withPreferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
 }
