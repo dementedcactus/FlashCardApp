@@ -78,12 +78,12 @@ class AddCardVC: UIViewController {
         for cell in cells {
             cell.transform = CGAffineTransform(translationX: 0, y: -tableViewHeight)
         }
-        var delayCounter = 0
+        var delayCounter:Double = 0
         for cell in cells {
-            UIView.animate(withDuration: 1.75, delay: Double(delayCounter) * 0.05, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            UIView.animate(withDuration: 1.75, delay: delayCounter * 0.05, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 cell.transform = CGAffineTransform.identity
             }, completion: nil)
-            delayCounter += 1
+            delayCounter += 0.5
         }
     }
     

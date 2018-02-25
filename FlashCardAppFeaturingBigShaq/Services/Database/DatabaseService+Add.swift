@@ -59,10 +59,10 @@ extension DatabaseService {
                             print(error)
                         } else {
                             print("Card Added")
+                            self.refreshDelegate?.refreshTableView()
+                            self.showAlertDelegate?.showAlertDelegate(cardOrDeck: "Card")
                         }
         }
-        self.refreshDelegate?.refreshTableView()
-        self.showAlertDelegate?.showAlertDelegate(cardOrDeck: "Card")
     }
     
     public func addDeck(_ deck: Deck) {
