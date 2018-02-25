@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class DeckVC: UIViewController {
     
@@ -80,15 +81,28 @@ class DeckVC: UIViewController {
     }
     
     @objc private func showAnswerClicked() {
-        UIView.animate(withDuration: 1.0) {
+        
+        UIView.animate(withDuration: 1.0, animations: {
             self.deckView.questionTextView.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(CGFloat.pi)) / 180.0)
             self.deckView.questionTextView.alpha = 0.0
-        }
+            self.deckView.containerView.snp.remakeConstraints { (make) in
+                make.top.equalTo(self.deckView.safeAreaLayoutGuide.snp.top)
+                make.leading.equalTo(self.deckView.safeAreaLayoutGuide.snp.leading)
+                make.trailing.equalTo(self.deckView.safeAreaLayoutGuide.snp.trailing)
+                make.height.equalTo(self.deckView.safeAreaLayoutGuide.snp.height).multipliedBy(0.80)
+            }
+        })
     }
     @objc private func repeatClicked() {
         deckView.questionTextView.alpha = 1
         deckView.questionTextView.frame = startingPosition
         deckView.questionTextView.transform = CGAffineTransform(rotationAngle: (0))
+        self.deckView.containerView.snp.remakeConstraints { (make) in
+            make.top.equalTo(self.deckView.safeAreaLayoutGuide.snp.top)
+            make.leading.equalTo(self.deckView.safeAreaLayoutGuide.snp.leading)
+            make.trailing.equalTo(self.deckView.safeAreaLayoutGuide.snp.trailing)
+            make.height.equalTo(self.deckView.safeAreaLayoutGuide.snp.height).multipliedBy(0.40)
+        }
     }
     @objc private func nextClicked() {
         

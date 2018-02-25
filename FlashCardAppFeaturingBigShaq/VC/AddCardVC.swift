@@ -23,7 +23,7 @@ class AddCardVC: UIViewController {
         addCardView.categoryTableView.dataSource = self
         addCardView.categoryTableView.delegate = self
         addCardView.frontTextField.delegate = self
-        addCardView.backTextField.delegate = self
+        //addCardView.backTextField.delegate = self
         addCardView.categoryButton.addTarget(self, action: #selector(categoryButtonAction), for: .touchUpInside)
         addCardView.addButton.addTarget(self, action: #selector(addButtonAction), for: .touchUpInside)
         DatabaseService.manager.showAlertDelegate = self
@@ -37,7 +37,7 @@ class AddCardVC: UIViewController {
 //        }
         
         if let front = addCardView.frontTextField.text, !front.isEmpty {
-            if let back = addCardView.backTextField.text, !back.isEmpty {
+            if let back = addCardView.backTextView.text, !back.isEmpty {
                 
                 guard let category = addCardView.categoryButton.currentTitle, category != "Category" else {
                     let alert = Alert.createErrorAlert(withMessage: "Please pick a category before posting.")

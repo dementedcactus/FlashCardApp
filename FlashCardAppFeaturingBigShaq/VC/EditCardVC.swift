@@ -33,7 +33,7 @@ class EditCardVC: UIViewController {
         editCardView.categoryTableView.dataSource = self
         editCardView.categoryTableView.delegate = self
         editCardView.frontTextField.delegate = self
-        editCardView.backTextField.delegate = self
+        //editCardView.backTextField.delegate = self
         editCardView.categoryButton.addTarget(self, action: #selector(categoryButtonAction), for: .touchUpInside)
         editCardView.editButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
         editCardView.dismissView.addTarget(self, action: #selector(dismissViewAction), for: .touchUpInside)

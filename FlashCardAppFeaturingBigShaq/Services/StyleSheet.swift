@@ -180,7 +180,7 @@ extension Stylesheet {
                     textview.textColor = Stylesheet.Colors.Dark
                     textview.font = Stylesheet.Fonts.Regular
                     textview.adjustsFontForContentSizeCategory = true
-                    textview.isScrollEnabled = false
+                    textview.isScrollEnabled = true
                 case .Editable:
                     textview.layer.borderWidth = CGFloat(Stylesheet.BorderWidths.TextfieldEditable)
                     textview.layer.borderColor = (Stylesheet.Colors.LightGrey).cgColor

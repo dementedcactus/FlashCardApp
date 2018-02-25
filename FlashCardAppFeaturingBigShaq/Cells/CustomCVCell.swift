@@ -21,6 +21,7 @@ class CustomCVCell: UICollectionViewCell {
         tv.text = "Sample Question Text Here"
         Stylesheet.Objects.Textviews.Completed.style(textview: tv)
         tv.isEditable = false
+        tv.font = .systemFont(ofSize: 10)
         return tv
     }()
     
@@ -29,6 +30,7 @@ class CustomCVCell: UICollectionViewCell {
         tv.text = "Sample Answer Text Here"
         Stylesheet.Objects.Textviews.Completed.style(textview: tv)
         tv.isEditable = false
+        tv.font = .systemFont(ofSize: 10)
         return tv
     }()
     
@@ -36,6 +38,7 @@ class CustomCVCell: UICollectionViewCell {
         let lb = UILabel()
         lb.backgroundColor = .clear
         lb.numberOfLines = 0
+        lb.font = .systemFont(ofSize: 10)
         lb.text = "Category"
         lb.textColor = .white
         lb.textAlignment = .center
@@ -77,14 +80,14 @@ class CustomCVCell: UICollectionViewCell {
             make.top.equalTo(containerView.snp.top)
             make.leading.equalTo(containerView.snp.leading)
             make.trailing.equalTo(containerView.snp.trailing)
-            make.height.equalTo(containerView.snp.height).multipliedBy(0.35)
+            make.height.equalTo(containerView.snp.height).multipliedBy(0.4)
         }
         
         answerTextView.snp.makeConstraints { (make) in
             make.top.equalTo(questionTextView.snp.bottom).offset(1)
             make.leading.equalTo(containerView.snp.leading)
             make.trailing.equalTo(containerView.snp.trailing)
-            make.height.equalTo(containerView.snp.height).multipliedBy(0.35)
+            make.height.equalTo(containerView.snp.height).multipliedBy(0.4)
         }
         
         categoryLabel.snp.makeConstraints { (make) in

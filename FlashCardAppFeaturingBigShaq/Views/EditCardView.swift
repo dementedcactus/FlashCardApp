@@ -59,23 +59,11 @@ class EditCardView: DismissViewTemplate {
         return lb
     }()
     
-    lazy var backTextField: UITextField = {
-        let textfield = UITextField()
-        textfield.layer.shadowColor = UIColor.gray.cgColor
-        textfield.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        textfield.layer.shadowOpacity = 1.0
-        textfield.layer.shadowRadius = 0.0
-        textfield.backgroundColor = Stylesheet.Colors.White
-        textfield.textAlignment = NSTextAlignment.center
-        textfield.font = Stylesheet.Fonts.TextfieldFont
-        textfield.textColor = Stylesheet.Colors.Dark
-        textfield.adjustsFontSizeToFitWidth = true
-        textfield.autocapitalizationType = .none
-        textfield.autocorrectionType = .no
-        textfield.keyboardType = .asciiCapable
-        textfield.returnKeyType = .default
-        textfield.placeholder = "e.g. is 4"
-        return textfield
+    lazy var backTextField: UITextView = {
+        let tv = UITextView()
+        tv.text = "e.g. is 4"
+        Stylesheet.Objects.Textviews.Editable.style(textview: tv)
+        return tv
     }()
     
     lazy var categoryButton: UIButton = {

@@ -13,7 +13,7 @@ class AllCardsView: UIView {
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: frame, collectionViewLayout: layout)
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
         cv.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.00)
         
         // Register CollectionViewCell

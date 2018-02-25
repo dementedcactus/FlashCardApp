@@ -59,23 +59,11 @@ class AddCardView: DismissViewTemplate {
         return lb
     }()
     
-    lazy var backTextField: UITextField = {
-        let textfield = UITextField()
-        textfield.layer.shadowColor = UIColor.gray.cgColor
-        textfield.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        textfield.layer.shadowOpacity = 1.0
-        textfield.layer.shadowRadius = 0.0
-        textfield.backgroundColor = Stylesheet.Colors.White
-        textfield.textAlignment = NSTextAlignment.center
-        textfield.font = Stylesheet.Fonts.TextfieldFont
-        textfield.textColor = Stylesheet.Colors.Dark
-        textfield.adjustsFontSizeToFitWidth = true
-        textfield.autocapitalizationType = .none
-        textfield.autocorrectionType = .no
-        textfield.keyboardType = .asciiCapable
-        textfield.returnKeyType = .default
-        textfield.placeholder = "e.g. is 4"
-        return textfield
+    lazy var backTextView: UITextView = {
+        let tv = UITextView()
+        tv.text = "e.g. is 4"
+        Stylesheet.Objects.Textviews.Editable.style(textview: tv)
+        return tv
     }()
     
     lazy var categoryButton: UIButton = {
@@ -119,7 +107,7 @@ class AddCardView: DismissViewTemplate {
         addSubview(frontLabel)
         addSubview(frontTextField)
         addSubview(backLabel)
-        addSubview(backTextField)
+        addSubview(backTextView)
         addSubview(categoryButton)
         addSubview(categoryTableView)
         addSubview(addButton)
@@ -145,16 +133,17 @@ class AddCardView: DismissViewTemplate {
             make.leading.equalTo(containerView.snp.leading)
             make.width.equalTo(containerView.snp.width).multipliedBy(1)
         }
-        backTextField.snp.makeConstraints { (make) in
+        backTextView.snp.makeConstraints { (make) in
             make.top.equalTo(backLabel.snp.bottom).offset(10)
             make.centerX.equalTo(containerView.snp.centerX)
             make.width.equalTo(containerView.snp.width).multipliedBy(0.8)
             make.height.equalTo(frontTextField.snp.height)
         }
         categoryButton.snp.makeConstraints { (make) in
-            make.top.equalTo(backTextField.snp.bottom).offset(10)
+            make.top.equalTo(backTextView.snp.bottom).offset(10)
             make.centerX.equalTo(containerView.snp.centerX)
             make.width.equalTo(containerView.snp.width).multipliedBy(0.8)
+            make.bottom.lessThanOrEqualTo(containerView.snp.bottom).offset(-30)
         }
         categoryTableView.snp.makeConstraints { (make) in
             make.top.equalTo(categoryButton.snp.bottom)
